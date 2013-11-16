@@ -6,7 +6,42 @@
 
 
 \section{Rechnerische Behandlung des Drehstromsystems}
+\sectionbox{
+\subsection{Grundlagen}
 
+	 \subsubsection{Spannung $u$}
+	
+	 Augenblickswert:
+	 $u(t) = \hat u \cos ( \omega t + \varphi_u) = U \sqrt 2 \cos (\omega t + \varphi_u)$ \\ 
+
+	 Scheitelwert / Amplitude:  $\hat u$ \\ 
+ 
+	 Effektivwert (allg.): $U_{\ir eff} = U = \sqrt{\frac{1}{T} \int \limits_{t_0}^{t_0 + T} u^2(\tau) \diff \tau}$ \\
+	 $\ra $ bei sinusförmigen Größen: $U = \frac{\hat u}{\sqrt 2}$ \\ 
+
+	 Phasenwinkel: $\varphi (t) = \omega t + \varphi_u$ mit $\omega = 2 \pi f = \frac{2 \pi}{T}$ \\ 
+
+	 Nullphasenwinkel: $\varphi_u$ \\ 
+
+
+	\subsubsection{Stromstärke $i$ }
+	 Augenblickswert:
+	 $i(t) = \hat i \cos ( \omega t + \varphi_i) = I \sqrt 2 \cos (\omega t + \varphi_i)$ \\ 
+
+	 Scheitelwert / Amplitude:  $\hat i$ \\ 
+ 
+	 Effektivwert (bei sinusförmigen Größen): $I = \frac{\hat i}{\sqrt 2}$ \\ 
+
+	 Phasenwinkel: $\varphi (t) = \omega t + \varphi_i$ mit $\omega = 2 \pi f = \frac{2 \pi}{T}$ \\ 
+
+	 Nullphasenwinkel: $\varphi_i$ \\ 
+
+	 \textbf{Phasenverschiebungswinkel:} \\ 
+	 $\varphi = \varphi_{ui} = \varphi_u - \varphi_i$ \\
+	 
+	  $0 < \varphi \le \pi$: Strom eilt der Spannung nach \\
+	 $-\pi \le \varphi < 0$: Strom eilt der Spannung vor
+}
 \section{Freileitungen und Kabel}
 
 
@@ -115,22 +150,31 @@ $G_b' = \tan \delta \cdot \omega C_b'$
 }
 \section{Leitung im stationären und nichtstationären Betrieb}
 \sectionbox{
-\subsection{Querkompensation}
-
+\subsection{verlustlose Fernleitung}
  $\beta = \sqrt{ L' C' }$ \\ 
 $\vartheta_{\ir nat} = \beta l $
 
-$Z_w = \sqrt{\frac{\omega L'}{\omega C'}}$ \\ 
+Wellenwiderstand für verlustlose Leitungen: $Z_W = \sqrt{\frac{\omega L'}{\omega C'}}$ \\ 
 
-$\vec Z_l = Z_w \j \sin ( \beta l)$ \\
+Längsimpedanz (elektrisch lang): $\vec Z_l = Z_w \j \sin ( \beta l)$ \\
 
-$\frac{Y_q}{2} = \frac{1}{Z_w} \j \tan \left( \frac{\beta l}{2} \right)$
+Queradmittanz (elektrisch lang): $\frac{Y_q}{2} = \frac{1}{Z_w} \j \tan \left( \frac{\beta l}{2} \right)$
 
-$P_{\ir nat} = \frac{U_n^2}{Z_w}$
+natürliche Leistung: $P_{\ir nat} = \frac{U_n^2}{Z_w}$
+}
+\sectionbox{
+\subsection{Querkompensation}
 
 \boxed{
 Q_2 = \frac{P_{\ir nat}}{\sin ( \beta l )} \left[ \sqrt{1 - \left( \frac{p_2}{P_{\ir nat}} \sin (\beta l) \right)^2} - \cos (\beta l) \right]}
 }
+\sectionbox{
+\subsection{Längskompensation}
+}
+\sectionbox{
+\subsection{Wanderwellen}
+}
+
 \section{Transformatoren}
 \end{multicols*}
 \end{document}
