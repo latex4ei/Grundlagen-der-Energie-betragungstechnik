@@ -1,1 +1,67 @@
+\documentclass[fs, footer]{latex4ei}
 
+\begin{document}
+\begin{multicols*}{4}
+\fstitle{Grundlagen der \\ Energieübertragungstechnik}
+
+
+\section{Rechnerische Behandlung des Drehstromsystems}
+
+\section{Freileitungen und Kabel}
+
+Widerstandsbelag: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\ 
+
+\sectionbox{
+\subsection{Freileitungen}
+
+Induktivitätsbelag: $L_b' = (2 \ln \frac{D_{\ir ers}}{r} + \frac 1 2 ) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ \\
+
+
+Kapazitätsbelag: $C_b ' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{r_B \sqrt{1 + \left( \frac{D_{\ir ers}}{2 h}\right)^2 } }\right)} $ \\ 
+
+
+$D \ll 2h$ $C_b' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{ r_B} \right) }$ \\ 
+
+
+Ohmscher Querleitwert $G'$:
+$G_b' = \frac{P_V'}{U_n^2}$
+
+}
+\sectionbox{
+\subsection{Kabel}
+
+Querschnitt: $Q = (r_a^2 - r_i^2) \pi$ \\ 
+
+
+Induktivitätsbelag eines Hohlleiters:
+
+$\omega L_{b_{\ir HL}}' = ( 0,96 + 0,051 \frac{r_a - r_i}{r_a})$ für $0 < \frac{r_a - r_i}{r_a} < 0,6$
+\\
+
+Kapazitätsbelag: $C_b' = \frac{2 \pi \epsilon}{\ln \left( \frac{R_a}{R-i} \right )}$ \\ 
+
+
+Ohmscher Querleitwert:
+$G_b' = \tan \delta \cdot \omega C_b'$
+}
+\section{Leitung im stationären und nichtstationären Betrieb}
+\sectionbox{
+\subsection{Querkompensation}
+
+ $\beta = \sqrt{ L ' C' }$ \\ 
+$\vartheta_{\ir nat} = \beta l $
+
+$Z_w = \sqrt{\frac{\omega L'}{\omega C'}}$ \\ 
+
+$\vec Z_l = Z_w \j \sin ( \beta l)$ \\
+
+$\frac{Y_q}{2} = \frac{1}{Z_w} \j \tan \left( \frac{\beta l}{2} \right)$
+
+$P_{\ir nat} = \frac{U_n^2}{Z_w}$
+
+\boxed{
+Q_2 = \frac{P_{\ir nat}}{\sin ( \beta l )} \left[ \sqrt{1 - \left( \frac{p_2}{P_{\ir nat}} \sin (\beta l) \right)^2} - \cos (\beta l) \right]}
+}
+\section{Transformatoren}
+\end{multicols*}
+\end{document}
