@@ -9,46 +9,115 @@
 
 \section{Freileitungen und Kabel}
 
-Widerstandsbelag: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\ 
 
 \sectionbox{
 \subsection{Freileitungen}
 
-Induktivitätsbelag: $L_b' = (2 \ln \frac{D_{\ir ers}}{r} + \frac 1 2 ) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ \\
+
+\subsubsection{Durchhang der Freileitungsseile}
+
+\symbolbox{
+\begin{tabular}{cc}
+ $f(x)$ & Durchhang an der Stelle $x$ \\
+$G'$ & Gewichtskraft des Leiterseils pro Längeneinheit \\
+$F_H$ & Horizontalzugkraft \\
+$h$ & mittlere Höhe der Leiterseile
+\end{tabular}
+}
 
 
-Kapazitätsbelag: $C_b ' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{r_B \sqrt{1 + \left( \frac{D_{\ir ers}}{2 h}\right)^2 } }\right)} $ \\ 
+Durchhang: $f(x) = f_{\ir max} - \frac{G'}{2 F_h} x^2)$ mit $f_max = \frac{G'}{8 F_H} a^2$
+
+
+mittlere Höhe: $h = h_{\ir Mast}  - 0,7 \cdot f_{\ir max}$ \\ 
+
+Mindestabstand zum Erdboden (VDE 0210-1):
+
+
+\symbolbox{
+\begin{tabular}{cc}
+$D_{\ir el}$ & elektrischer Grundabstand
+\end{tabular}
+} \\ 
+
+Mindestabstand: $h_{\ir min} = 5 \si{\meter} + D_{\ir el}$ \\ 
+
+
+
+\textbf{Bündelleiter} \\
+Ersatzradius $r_b$: $r_n = \sqrt[n]{\cdot r \cdot r^{n-1}_{T}} $\\ \\ 
+
+\textbf{Abstand zwischen den Außenleitern} \\ 
+Ersatzabstand $D$ : $D = \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31}}$ \\ \\
+
+
+\subsubsection{Widerstandsbelag}
+
+\symbolbox{
+	\begin{tabular}{cc}
+	$Q$ & Querschnitt \\
+	$\alpha$ & Temperaturkoeffizient \\
+	$\vartheta$ & Celsiustemperatur
+	\end{tabular}
+}
+
+Widerstand pro Längeneinheit: $R_{20}' =  \frac{1}{\kappa_{20} Q}$ \\
+mit Temperaturabhängigkeit: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\ 
+
+im Bündelleiter: $R_B = \frac{1}{n} \cdot R$ mit $R$ ist Widerstand des Teilleiters
+
+\subsubsection{Induktivitätsbelag}
+Betriebsinduktivitätsbelag: $L_b' = (2 \ln \frac{D_{\ir ers}}{r} + \frac 1 2 ) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ \\
+
+
+\subsubsection{Kapazitätsbelag}
+ $C_b ' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{r_B \sqrt{1 + \left( \frac{D_{\ir ers}}{2 h}\right)^2 } }\right)} $ \\ 
 
 
 $D \ll 2h$ $C_b' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{ r_B} \right) }$ \\ 
 
 
-Ohmscher Querleitwert $G'$:
-$G_b' = \frac{P_V'}{U_n^2}$
+\subsubsection{Ohmscher Querleitwert $G'$}
+
+spezifische Arbeitsverluste: $P_V' = 3 \cdot \left( \frac{U_n}{\sqrt{3}} \right)^2 \cdot G_b' = U_n^2 \cdot G_b'$ \\
+
+Betriebsableitbelag: $G_b' = \frac{P_V'}{U_n^2}$
 
 }
 \sectionbox{
 \subsection{Kabel}
 
+
 Querschnitt: $Q = (r_a^2 - r_i^2) \pi$ \\ 
 
+
+
+
+\subsubsection{Widerstandsbelag $R'$}
+
+\subsubsection{Induktivitätsbelag $L'$}
+Betriebsinduktivitäsbelag: $L_b' = \frac{L_B}{l} = \left( 2 \ln \frac{D}{r}+ \frac{1}{2} \right) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ \\
+
+Betriebsreaktanzbelag: $X_b ' = \omega	L_b ' $ \\ 
 
 Induktivitätsbelag eines Hohlleiters:
 
 $\omega L_{b_{\ir HL}}' = ( 0,96 + 0,051 \frac{r_a - r_i}{r_a})$ für $0 < \frac{r_a - r_i}{r_a} < 0,6$
 \\
 
-Kapazitätsbelag: $C_b' = \frac{2 \pi \epsilon}{\ln \left( \frac{R_a}{R-i} \right )}$ \\ 
+\subsubsection{Kapazitätsbelag $C'$}
+
+Radialfeldkabel: $C_b' = \frac{2 \pi \epsilon}{\ln \left( \frac{R_a}{R_i} \right )}$ \\ 
 
 
-Ohmscher Querleitwert:
+\subsubsection{Ohmscher Querleitwert}
 $G_b' = \tan \delta \cdot \omega C_b'$
 }
 \section{Leitung im stationären und nichtstationären Betrieb}
 \sectionbox{
 \subsection{Querkompensation}
 
- $\beta = \sqrt{ L ' C' }$ \\ 
+ $\beta = \sqrt{ L' C' }$ \\ 
 $\vartheta_{\ir nat} = \beta l $
 
 $Z_w = \sqrt{\frac{\omega L'}{\omega C'}}$ \\ 
