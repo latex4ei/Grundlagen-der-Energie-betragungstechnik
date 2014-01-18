@@ -5,12 +5,11 @@
 \begin{multicols*}{4}
 \fstitle{Grundlagen der \\ Energie- \\ übertragungstechnik}
 
-
+ \ctikzset{bipoles/length=0.7cm}
 \section{Rechnerische Behandlung des Drehstromsystems}
-\sectionbox{
-\subsection{Grundlagen}
 
-	 \subsubsection{Spannung $u$}
+\sectionbox{
+	 \subsection{Spannung $u$}
 	
 	 Augenblickswert:
 	 $u(t) = \hat u \cos ( \omega t + \varphi_u) = U \sqrt 2 \cos (\omega t + \varphi_u)$ \\ 
@@ -23,9 +22,10 @@
 	 Phasenwinkel: $\varphi (t) = \omega t + \varphi_u$ mit $\omega = 2 \pi f = \frac{2 \pi}{T}$ \\ 
 
 	 Nullphasenwinkel: $\varphi_u$ \\ 
+}
+\sectionbox{
 
-
-	\subsubsection{Stromstärke $i$ }
+	\subsection{Stromstärke $i$ }
 	 Augenblickswert:
 	 $i(t) = \hat i \cos ( \omega t + \varphi_i) = I \sqrt 2 \cos (\omega t + \varphi_i)$ \\ 
 
@@ -43,13 +43,46 @@
 	  $0 < \varphi \le \pi$: Strom eilt der Spannung nach \\
 	 $-\pi \le \varphi < 0$: Strom eilt der Spannung vor
 }
-\section{Freileitungen und Kabel}
-
-
 \sectionbox{
+	 \subsection{Symmetrische Komponenten} 
+
+	 zerlegen eines Dreileiter-Drehstromnetz in unabhängige Systeme (Mit-, Gegen- und Nullsystem) \\
+
+
+	 Entsymmetrierungsmatrix $\ma T$:
+
+	 $\vect{\vec I_1 \\ \vec I_2 \\ \vec I_3} = \mat{1 & 1 & 1 \\ \vec a^2 & \vec a & 1 \\ \vec a & \vec a^2 & 1} \cdot \vect{\vec I_{(1)1} \\ \vec I_{(2)1} \\ \vec I_{(0)1}}$ \\
+
+	 Symmetrierungsmatrix $\ma S$:
+
+ 	$\vect{\vec I_{(1)1} \\ \vec I_{(2)1} \\ \vec I_{(0)1}} = \frac{1}{3} \cdot \mat{1 & \vec a & \vec a^2 \\ 1 & \vec a^2 & \vec a \\ 1 & 1 & 1 } \cdot  \vect{\vec I_1 \\ \vec I_2 \\ \vec I_3} $ \\ \\ \\
+
+ 	Mitsystem:
+
+ 	\begin{circuitikz}[scale=0.8]
+ 	\draw (0,0) -- (1,0) to[R, o-o, l^=$\vec{Z_{(1)}}$, i^>=$\vec{I_{(1)}}$ ] (4,0) to[open, v^>=$\vec{U_{(1)}}$, o-o] (4, -1.5) -- (1, -1.5) to[short, o-] (0,-1.5) to[sV, v^<=$\vec{E_{1}}$] (0,0);
+ 	\end{circuitikz} \\
+
+ 	Gegensystem:
+
+ 	\begin{circuitikz}[scale=0.8]
+ 	\draw (0,0) -- (1,0) to[R, o-o, l^=$\vec{Z_{(2)}}$, i^>=$\vec{I_{(2)}}$ ] (4,0) to[open, v^>=$\vec{U_{(2)}}$, o-o] (4, -1.5) -- (1, -1.5) to[short, o-] (0,-1.5) to[short] (0,0);
+ 	\end{circuitikz} \\
+
+ 	Nullsystem:
+
+ 	\begin{circuitikz}[scale=0.8]
+ 	\draw (0,0) -- (1,0) to[R, o-o, l^=$\vec{Z_{(0)}}$, i^>=$\vec{I_{(0)}}$ ] (4,0) to[open, v^>=$\vec{U_{(0)}}$, o-o] (4, -1.5) -- (1, -1.5) to[short, o-] (0,-1.5) to[short] (0,0);
+ 	\end{circuitikz}
+
+}
+ 	\section{Freileitungen und Kabel}
+
+
+
 \subsection{Freileitungen}
 
-
+\sectionbox{
 \subsubsection{Durchhang der Freileitungsseile}
 
 \symbolbox{
@@ -77,16 +110,28 @@ $D_{\ir el}$ & elektrischer Grundabstand
 } \\ 
 
 Mindestabstand: $h_{\ir min} = 5 \si{\meter} + D_{\ir el}$ \\ 
+}
+\sectionbox{
+\subsubsection{Bündelleiter}
 
+\symbolbox{
+	\begin{tabular}{cc}
+	$r_B$ & Ersatzradius \\
+	$n$ & Anzahl der Teilleiter \\
+	$r$ & Seilradius eines Teilleiters \\
+	$r_T$ & Teilkreisradius
+	\end{tabular}
+}
+für einen Bündelleiter mit 4 Teilleitern: $r_T = \sqrt 2 \frac{a}{2}$
 
-
-\textbf{Bündelleiter} \\
-Ersatzradius $r_b$: $r_n = \sqrt[n]{\cdot r \cdot r^{n-1}_{T}} $\\ \\ 
+Ersatzradius $r_b$: $r_n = \sqrt[n]{\cdot r \cdot r^{n-1}_{T}} $
 
 \textbf{Abstand zwischen den Außenleitern} \\ 
-Ersatzabstand $D$ : $D = \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31}}$ \\ \\
-
-
+Ersatzabstand $D_{\ir ers}$ für Einfachsysteme: $D = \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31}}$ \\ \\
+Ersatzabstand für Doppelsysteme mit $\gamma$-Verdrillung: \\
+$D =  \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31} \cdot \frac{D_{12'} \cdot D_{23'} \cdot D_{31'}}{D_{11'} \cdot D_{22'} \cdot D_{33'}}}$
+}
+\sectionbox{
 \subsubsection{Widerstandsbelag}
 
 \symbolbox{
@@ -101,18 +146,21 @@ Widerstand pro Längeneinheit: $R_{20}' =  \frac{1}{\kappa_{20} Q}$ \\
 mit Temperaturabhängigkeit: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\ 
 
 im Bündelleiter: $R_B = \frac{1}{n} \cdot R$ mit $R$ ist Widerstand des Teilleiters
-
+}
+\sectionbox{
 \subsubsection{Induktivitätsbelag}
 Betriebsinduktivitätsbelag: $L_b' = (2 \ln \frac{D_{\ir ers}}{r} + \frac 1 2 ) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ \\
-
-
+für Bündelleiter: $L_b' = (2 \ln \frac{D_{\ir ers}}{r_B} + \frac{1}{2 n}) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ 
+}
+\sectionbox{
 \subsubsection{Kapazitätsbelag}
  $C_b ' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{r_B \sqrt{1 + \left( \frac{D_{\ir ers}}{2 h}\right)^2 } }\right)} $ \\ 
 
 
 $D \ll 2h$ $C_b' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{ r_B} \right) }$ \\ 
 
-
+}
+\sectionbox{
 \subsubsection{Ohmscher Querleitwert $G'$}
 
 spezifische Arbeitsverluste: $P_V' = 3 \cdot \left( \frac{U_n}{\sqrt{3}} \right)^2 \cdot G_b' = U_n^2 \cdot G_b'$ \\
@@ -162,9 +210,7 @@ Längsimpedanz (elektrisch lang): $\vec Z_l = Z_w \j \sin ( \beta l)$ \\
 Queradmittanz (elektrisch lang): $\frac{Y_q}{2} = \frac{1}{Z_w} \j \tan \left( \frac{\beta l}{2} \right)$
 
 natürliche Leistung: $P_{\ir nat} = \frac{U_n^2}{Z_w}$
-}
-\sectionbox{
-\subsection{Verlustbehaftete Fernleitung}
+
 
 Zweitorgleichung: $\mat{ \vec U_1  \\ \vec I_1 } = \mat{ \cos(\beta l) & Z_w \j \sin ( \beta l) \\ \frac{1}{Z_w} \j \sin (\beta l) & \cos ( \beta l)} \mat{\vec U_2  \\ \vec I_2 }$
 } 
@@ -232,7 +278,7 @@ Hauptreaktanz: $X_h = \Im{\frac{\vec U_{r1}}{\vec I_h}}$
 Eisenverluste (im Einphasentransformator): $R_{\ir Fe} = \frac{U_{r1}^2}{P_0} = \textrm{ü}^2 \cdot \frac{U^2_{r2}}{P_0}$
 
 \subsubsection{Kurzschluss}
- \ctikzset{bipoles/length=0.7cm}
+
 \begin{circuitikz}
 \draw
 (0,0) to[R, o-, i>^=$\vec I_1$, l=$R_k$] (1.5,0) to[L, l=$\j X_k$, i^>=$\vec I_2^\times$] (3,0) -- (3,-1) to[short, -o] (0, -1) to[open, v^<=$\vec U_1$] (0,0)
@@ -299,6 +345,6 @@ $X_{k(Y)} = \frac{X_{k(\Delta)}}{3}$
 (3.2,0.1) node[anchor=south] {W} (3.2, 0) to[L, o-] (3.2, -1.5) -- (3.2, -1.7) -- (1, -1.7) -- (1, -0.2) -- (2, -0.2);
 \end{circuitikz}
 
- \subsubsection{Zickzachschaltung}  
+ \subsubsection{Zickzackschaltung}  
 \end{multicols*}
 \end{document}
