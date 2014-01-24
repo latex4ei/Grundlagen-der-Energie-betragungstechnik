@@ -1,3 +1,4 @@
+
 \documentclass[fs, footer]{latex4ei}
 \usepackage[european]{circuitikz}
 \usepackage{tikz}
@@ -124,7 +125,7 @@ Mindestabstand: $h_{\ir min} = 5 \si{\meter} + D_{\ir el}$ \\
 }
 für einen Bündelleiter mit 4 Teilleitern: $r_T = \sqrt 2 \frac{a}{2}$
 
-Ersatzradius $r_b$: $r_n = \sqrt[n]{\cdot r \cdot r^{n-1}_{T}} $
+Ersatzradius $r_b$: $r_n = \sqrt[n]{n \cdot r \cdot r^{n-1}_{T}} $
 
 \textbf{Abstand zwischen den Außenleitern} \\ 
 Ersatzabstand $D_{\ir ers}$ für Einfachsysteme: $D = \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31}}$ \\ \\
@@ -175,9 +176,12 @@ Betriebsableitbelag: $G_b' = \frac{P_V'}{U_n^2}$
 Querschnitt: $Q = (r_a^2 - r_i^2) \pi$ \\ 
 
 
-
+Eindringtiefe: $\delta = \sqrt{\frac{2}{\omega \mu \kappa}}$
 
 \subsubsection{Widerstandsbelag $R'$}
+
+Widerstand pro Längeneinheit: $R_{20}' =  \frac{1}{\kappa_{20} Q}$ \\
+mit Temperaturabhängigkeit: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\ 
 
 \subsubsection{Induktivitätsbelag $L'$}
 Betriebsinduktivitäsbelag: $L_b' = \frac{L_B}{l} = \left( 2 \ln \frac{D}{r}+ \frac{1}{2} \right) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ \\
@@ -186,17 +190,40 @@ Betriebsreaktanzbelag: $X_b ' = \omega	L_b ' $ \\
 
 Induktivitätsbelag eines Hohlleiters:
 
-$\omega L_{b_{\ir HL}}' = ( 0,96 + 0,051 \frac{r_a - r_i}{r_a})$ für $0 < \frac{r_a - r_i}{r_a} < 0,6$
+$\omega L_{b_{\ir HL}}' = \omega L_{b}' \cdot ( 0,96 + 0,051 \frac{r_a - r_i}{r_a})$ für $0 < \frac{r_a - r_i}{r_a} < 0,6$
 \\
-
+}
+\sectionbox{
 \subsubsection{Kapazitätsbelag $C'$}
 
-Radialfeldkabel: $C_b' = \frac{2 \pi \epsilon}{\ln \left( \frac{R_a}{R_i} \right )}$ \\ 
+Radialfeldkabel: \\
+$C_b' = \frac{2 \pi \epsilon}{\ln \left( \frac{R_a}{R_i} \right )}$ \\ 
+$C_L' = 0$
 
+Gürtelkabel: \\
+$C_b' = \frac{2 \pi \epsilon_0 \epsilon_r}{\ln{\sqrt{\frac{3c^2 (R_a^2 - c^2)^3}{R_i^2 (R_a^6 - c^6)} } } }$
 
+}
+\sectionbox{
 \subsubsection{Ohmscher Querleitwert}
 $G_b' = \tan \delta \cdot \omega C_b'$
 }
+
+\sectionbox{
+\subsubsection{typische Werte}
+\;
+	\tablebox{
+	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lll@{}} \ctrule
+		Symbol & Einheit & typische Werte \\ \cmrule
+		$R'$ & $[\si{\ohm \per \kilo \meter}]$ & $0,01 \ldots 0,05$  \\
+		$X' = \omega L_b'$ & $[\si{\ohm \per \kilo \meter}]$& $0,1 \ldots 0,2 $ \\
+		$Y_b' = \omega C_b'$&  $[\si{\micro \siemens \per \kilo \meter} ]$& $50 \ldots 100 $ \\
+		$Z_w $ & $[\si{\ohm} ]$ &$32 \ldots 63 $ \\ 
+		\cbrule
+	\end{tabular*}
+	}
+}
+
 \section{Leitung im stationären und nichtstationären Betrieb}
 \sectionbox{
 \subsection{verlustlose Fernleitung}
@@ -220,6 +247,7 @@ Zweitorgleichung: $\mat{ \vec U_1  \\ \vec I_1 } = \mat{ \cos(\beta l) & Z_w \j 
 \boxed{
 Q_2 = \frac{P_{\ir nat}}{\sin ( \beta l )} \left[ \sqrt{1 - \left( \frac{p_2}{P_{\ir nat}} \sin (\beta l) \right)^2} - \cos (\beta l) \right]}
 }
+
 \sectionbox{
 \subsection{Längskompensation}
 $\frac{P_{\ir natK}}{P_{\ir nat}} = \sqrt{\frac{1 - k_q}{1-k_l}} $
@@ -268,7 +296,7 @@ Bemessungsstrom: $\vec I_r = \frac{S_{rT}}{\sqrt{3} U_{rT}}$
 Kupferverluste: $P_{\ir cu} = 3 U_{R_k} I_1 = 3 R_k J_1^2$
 }
 
-
+\sectionbox{
 \subsubsection{Leerlauf}
 
 Leerlaufstrom: $\vec I_0 = \vec I_{\ir Fe} + \vec I_h$
@@ -276,7 +304,8 @@ Leerlaufstrom: $\vec I_0 = \vec I_{\ir Fe} + \vec I_h$
 Hauptreaktanz: $X_h = \Im{\frac{\vec U_{r1}}{\vec I_h}}$ 
 
 Eisenverluste (im Einphasentransformator): $R_{\ir Fe} = \frac{U_{r1}^2}{P_0} = \textrm{ü}^2 \cdot \frac{U^2_{r2}}{P_0}$
-
+}
+\sectionbox{
 \subsubsection{Kurzschluss}
 
 \begin{circuitikz}
@@ -293,6 +322,8 @@ $u_k = \frac{U_k}{U_{r1}} = \frac{I_{r1} \cdot X_k}{U_{r1}} \cdot \left( \frac{U
 
 
 Bezogener Spannungsfall: $u_x = \frac{X_k S_{rT}}{U_{r1}^2}$
+}
+\sectionbox{
 \subsubsection{Bemessungsstrom}
 
 \begin{circuitikz}
@@ -301,14 +332,16 @@ Bezogener Spannungsfall: $u_x = \frac{X_k S_{rT}}{U_{r1}^2}$
 to[short, o-o] (0,-1)to[open, v^<=$\vec U_1$] (0,0)
  ;
 \end{circuitikz}
-
+}
+\sectionbox{
 \subsubsection{Übersetzung \textrm{ü}}
 
 Übersetzung: $\textrm{ü} = \frac{w_1}{w_2}$ mit $w_1 :=$ Primärwicklung, $w_2 :=$ Sekundärwicklung \\
 
 Leerlaufübersetzung $\textrm{ü}_0 = \frac{\vec U_1}{\vec U_2} \approx \frac{w_1}{w_2}$
 
-
+}
+\sectionbox{
 \subsection{Drehstromtransformator}
 
 Kurzschlussspannung: $u_k = \frac{U_{kT}}{U_{rT}} = \frac{\frac{U_{kT}}{\sqrt 3}}{\frac{U_{rT}}{\sqrt 3}} = \frac{X_k \cdot I_{rT}}{\frac{U_{rT}}{\sqrt 3}}$
@@ -318,7 +351,8 @@ Bemessungsleistung: $S_{rT} = \sqrt{3} \cdot U_{rT} \cdot I_{rT}$
 Kurzschlussreaktanz: $X_k = \frac{u_k \cdot U_{rT}^2}{S_{rT}}$ 
 
 $X_{k(Y)} = \frac{X_{k(\Delta)}}{3}$
-
+}
+\sectionbox{
 \subsection{Wicklungsverschaltung}
 
 \subsubsection{Sternschaltung}
@@ -327,10 +361,8 @@ $X_{k(Y)} = \frac{X_{k(\Delta)}}{3}$
 (0,0) node[anchor=south] {U} to[L, v_>=$\vec U_{\ir U}$, o-] (0, -3) -- (1,-3) to[L, -o] (1,0) node[anchor=south] {V}
 (1,-3) -- (2, -3) to[L, -o] (2, 0)  node[anchor=south] {W}
 (3,0) to[short, -o] (3,0) node[anchor=south] {N};
-\draw[dashed] (2, -3) -- (3, -3) to[short] (3,-0.1) 
- ;
- \end{circuitikz} 
-
+\draw[dashed] (2, -3) -- (3, -3) to[short] (3,-0.1) ;
+ \end{circuitikz} \quad \quad
 \begin{circuitikz}
 \draw[->] (0.8, -1) -- (0, 0) node[anchor=west] {$\vec U_{\ir W}$};
 \draw[->](0.8, -1) -- (0, -2) node[anchor=west] {$\vec U_{\ir V}$};
@@ -346,5 +378,7 @@ $X_{k(Y)} = \frac{X_{k(\Delta)}}{3}$
 \end{circuitikz}
 
  \subsubsection{Zickzackschaltung}  
+
+ }
 \end{multicols*}
 \end{document}
