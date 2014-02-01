@@ -28,7 +28,7 @@
 
 	\subsection{Stromstärke $i$ }
 	 Augenblickswert:
-	 $i(t) = \hat i \cos ( \omega t + \varphi_i) = I \sqrt 2 \cos (\omega t + \varphi_i)$ \\ 
+	 $i(t) = \hat{i} \cos ( \omega t + \varphi_i) = I \sqrt 2 \cos (\omega t + \varphi_i)$ \\ 
 
 	 Scheitelwert / Amplitude:  $\hat i$ \\ 
  
@@ -111,6 +111,12 @@ $D_{\ir el}$ & elektrischer Grundabstand
 } \\ 
 
 Mindestabstand: $h_{\ir min} = 5 \si{\meter} + D_{\ir el}$ \\ 
+
+Material:
+
+z.B. Al/St 240/40:
+
+Querschnitt des Aluminiumleiters $240 \si{\milli \meter \squared}$, Querschnitt des Stahlleiters $40 \si{\milli \meter \squared} $
 }
 \sectionbox{
 \subsubsection{Bündelleiter}
@@ -131,9 +137,15 @@ Ersatzradius $r_b$: $r_n = \sqrt[n]{n \cdot r \cdot r^{n-1}_{T}} $
 Ersatzabstand $D_{\ir ers}$ für Einfachsysteme: $D = \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31}}$ \\ \\
 Ersatzabstand für Doppelsysteme mit $\gamma$-Verdrillung: \\
 $D =  \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31} \cdot \frac{D_{12'} \cdot D_{23'} \cdot D_{31'}}{D_{11'} \cdot D_{22'} \cdot D_{33'}}}$
+
+typische Angabe des Werte:
+
+$4 \cdot \frac{21,7}{400} \si{\milli \meter} \Ra a = 400 \si{\milli \meter}, r=\frac{21,7}{2} \si{\milli \meter} $
 }
 \sectionbox{
 \subsubsection{Widerstandsbelag}
+
+Durch Ladungsträgerbewegung bei Stromfluss wird Joule'sche Wärme frei.
 
 \symbolbox{
 	\begin{tabular}{cc}
@@ -150,19 +162,74 @@ im Bündelleiter: $R_B = \frac{1}{n} \cdot R$ mit $R$ ist Widerstand des Teillei
 }
 \sectionbox{
 \subsubsection{Induktivitätsbelag}
-Betriebsinduktivitätsbelag: $L_b' = (2 \ln \frac{D_{\ir ers}}{r} + \frac 1 2 ) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ \\
+
+Induktivität einer Leiterschleife mit Hin- und Rückleiter:
+
+$L_{00} = l \frac{\mu_0}{\pi} \cdot (\frac{1}{4} + \ln \frac{d}{r})$ \\
+
+Koppelinduktivitäten:
+
+$M = M_{12} = M_{23} = M_{31} = \frac{\mu_0}{2\pi} l (\frac{1}{4} + \ln \frac{d^2}{rD})$ \\
+
+Betriebsinduktivität:
+
+$L_b \cdot \vec I_1 = L_{00} \cdot \vec I_1 + M \cdot \vec I_2 + M \cdot \vec I_3 = (L_{00} - M) \cdot \vec I_1$ \\
+
+\emphbox{Betriebsinduktivitätsbelag: $L_b' = (2 \ln \frac{D_{\ir ers}}{r} + \frac 1 2 ) \cdot 10^{-4} \si{\henry \per \kilo \meter}$} \\
 für Bündelleiter: $L_b' = (2 \ln \frac{D_{\ir ers}}{r_B} + \frac{1}{2 n}) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ 
 }
+
+\sectionbox{
+	\subsubsection{Betriebsimpedanzen}
+
+	Einfachseil: $\vec Z_b' = \vec Z_{(1)}' = R' + \j \omega \frac{\mu_0}{2\pi} (\ln \frac{D}{r} + \frac{1}{4})$ \\
+
+	Bündelleiter: $\vec Z_b' = \vec Z_{(1)}' = \frac{R'}{n} + \j \omega \frac{\mu_0}{2\pi} (\ln \frac{D}{r_B} + \frac{1}{4n})$ \\
+
+	Typische Werte (Al/St 240/40) bei $50 \si{\hertz}$: \\
+	\tablebox{
+	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lll@{}} \ctrule
+		$110 \si{\kilo \volt} $ & Einfachseil & $\vec Z_b' = (0,12 + \j 0,4) \si{\ohm \per \kilo \meter} $ \\
+		$220 \si{\kilo \volt} $ & 2er-Bündel & $\vec Z_b' = (0,06 + \j 0,3) \si{\ohm \per \kilo \meter} $ \\
+		$380 \si{\kilo \volt} $ & 4er-Bündel & $\vec Z_b' = (0,03 + \j 0,25) \si{\ohm \per \kilo \meter} $ \\
+		\cbrule
+	\end{tabular*}
+	}
+
+} 
+
+\sectionbox{
+	
+	\subsubsection{Nullimpedanz}
+
+	Erdstromtiefe: $\delta = \frac{1,85}{\sqrt{\mu_0 \cdot \frac{1}{\rho} \cdot \omega} }$ 
+
+	Nullimpedanz für Einfachseile:
+
+	$\vec Z_{(0)} = \frac{\vec U_{(0)}}{\vec I_{(0)}} = R' + 3 \omega \frac{\mu_0}{8}+ \j \omega \frac{\mu_0}{2\pi} (3 \ln \frac{\delta}{\sqrt[3]{r \cdot D^2}} + \frac{1}{4})$ \\
+
+	Nullimpedanz für Bündelleiter:
+
+	$\vec Z_{(0)} = \frac{\vec U_{(0)}}{\vec I_{(0)}} = \frac{R'}{n} + 3 \omega \frac{\mu_0}{8}+ \j \omega \frac{\mu_0}{2\pi} (3 \ln \frac{\delta}{\sqrt[3]{r \cdot D^2}} + \frac{1}{4n})$
+} 
 \sectionbox{
 \subsubsection{Kapazitätsbelag}
  $C_b ' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{r_B \sqrt{1 + \left( \frac{D_{\ir ers}}{2 h}\right)^2 } }\right)} $ \\ 
 
 
-$D \ll 2h$ $C_b' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{ r_B} \right) }$ \\ 
+für $D \ll 2h$: $C_b' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{ r_B} \right) }$ \\ 
 
 }
+
+\sectionbox{
+	\subsubsection{Nullkapazität}
+
+	$C_{(0)}' = \frac{2\pi \epsilon_0}{3 \ln \frac{2h}{\sqrt[3]{rD^2}}}$ 
+
+} 
 \sectionbox{
 \subsubsection{Ohmscher Querleitwert $G'$}
+Verluste durch Ableitströme über Isolatoren und durch Koronaverluste. \\
 
 spezifische Arbeitsverluste: $P_V' = 3 \cdot \left( \frac{U_n}{\sqrt{3}} \right)^2 \cdot G_b' = U_n^2 \cdot G_b'$ \\
 
@@ -183,6 +250,25 @@ Eindringtiefe: $\delta = \sqrt{\frac{2}{\omega \mu \kappa}}$
 Widerstand pro Längeneinheit: $R_{20}' =  \frac{1}{\kappa_{20} Q}$ \\
 mit Temperaturabhängigkeit: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\ 
 
+
+\subsubsection*{Stromverdrängung / Skineffekt}
+für dicke massive Leiter. Erhöhung des ohmschen Widerstandes des Leiters.  
+\symbolbox{
+	\begin{tabular}{cc}
+	$y_s$ &  Skineffekt-Korrekturfaktor \\
+	$R_{~}$ & Wechselstromwiderstand \\
+	$R_{=}$ & Gleichstromwiderstand \\
+	$f$ & Frequenz
+	\end{tabular}
+} 
+
+$\frac{R_{\approx}}{R_{=}} = 1 + y_s$
+
+$y_s = \frac{x_s^4}{192 + 0,8 \cdot x_s^4}$
+
+$x_s = \sqrt{\frac{2 \cdot \mu \cdot f \cdot k_s}{R_{=}'}} $ mit $k_s = \begin{cases}
+1 & \text{für Rundleiter} \\ 0,5 & \text{für Segmentleiter}
+\end{cases}$
 \subsubsection{Induktivitätsbelag $L'$}
 Betriebsinduktivitäsbelag: $L_b' = \frac{L_B}{l} = \left( 2 \ln \frac{D}{r}+ \frac{1}{2} \right) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ \\
 
@@ -225,32 +311,144 @@ $G_b' = \tan \delta \cdot \omega C_b'$
 }
 
 \section{Leitung im stationären und nichtstationären Betrieb}
+
+\sectionbox{
+	\subsection{Vereinfachte Leitungsbetrachtung}
+
+	vernachlässigen von $G_b$ und $Y_b$
+
+	\begin{circuitikz}
+	 \draw(0,0) to[R, o-, i_>=$\vec{I}$,  l=$R' \cdot l$] (2,0) to[L, l=$\j \omega L_b' l$, i_>=$\vec I$] (4,0) to[open, v^>=$\vec U_2$, -o] (4, -1) -- (0,-1) to[open, o-o, v^<=$\vec U_1$] (0,0);
+	 \end{circuitikz} 
+
+	 Längsspannungsfall: $\Delta U = R \cdot I_w + \omega L_b \cdot I_b$
+
+	 Querspannungsfall: $\delta U = \omega L_b \cdot I_w - R \cdot I_b$
+}
+
+
+\sectionbox{
+	\subsection{Leitungsgleichung für einphasige Leitung}
+
+
+	$\frac{\partial^2 u}{\partial x^2} = L' \cdot C' \cdot \frac{\partial^2 u}{\partial t^2} + (R' \cdot C' + L' \cdot G') \cdot \frac{\partial u}{\partial t}+ R' \cdot G' \cdot u$
+
+	$\frac{\partial^2 i}{\partial x^2} = L' \cdot C' \cdot \frac{\partial^2 i}{\partial t^2} + (R' \cdot C' + L' \cdot G') \cdot \frac{\partial i}{\partial t}+ R' \cdot G' \cdot i$ \\ 
+
+	Übertragungsmaß:
+
+	$\vec \gamma = \alpha + \j \cdot \beta = \sqrt{(R'(\omega) + \j \omega L'(\omega)) \cdot (G'(\omega) + \j \omega C'(\omega))} $ 
+} 
+\sectionbox{
+\subsection{Leitungsgleichungen für Drehstromleitungen} 
+
+Übertragungsmaß $\vec \gamma = \alpha + \j \beta = \sqrt{(R' + \j \omega L') \cdot (G' + \j \omega C')} $
+
+Betriebswellenimpendanz $\vec Z_W = \sqrt{\frac{R' + \j \omega L'}{G' + \j \omega C'}}  $
+
+Zweitorgleichung der verlustbehafteten Leitung:
+
+$\vect{\vec U_1 \\ \vec I_1} = \mat{\cosh (\vec \gamma \cdot l) & \vec Z_w \cdot \sinh(\vec \gamma \cdot l) \\ \frac{1}{\vec Z_w} \cdot \sinh(\vec \gamma \cdot l) & \cosh(\vec \gamma \cdot l)} \cdot \vect{\vec U_2 \\ \vec I_2}$ \\  \\
+
+\textbf{$\pi$ - Ersatzschaltbild}
+
+\begin{circuitikz}
+\draw (0,0) to[short, o-*, i^>=$\vec I_1$] (1,0) to[R, l=$\vec Z_l$] (3,0) to[short, *-o, i^>=$\vec I_2$] (4,0) to[open,v^>=$\vec U_2$] (4, -1.5) to[short, o-*] (3, -1.5) -- (1, -1.5) to[short, *-o] (0,-1.5) to[open, v^<=$\vec U_1$] (0,0);
+\draw (1,0) to[R, l=$\frac{\vec Y_q}{2}$] (1, -1.5);
+\draw (3,0) to[R, l=$\frac{\vec Y_q}{2}$] (3, -1.5);
+\end{circuitikz}
+
+
+Längsimpedanz $\vec Z_l = \vec Z_w \cdot \sinh(\vec \gamma \cdot l)$ 
+
+Queradmittanz $\frac{\vec Y_q}{2} = \frac{1}{\vec Z_w} \cdot \tanh(\vec \gamma \cdot \frac{l}{2})$
+
+
+}
 \sectionbox{
 \subsection{verlustlose Fernleitung}
- $\beta = \sqrt{ L' C' }$ \\ 
+Phasenmaß: $\beta = \omega \sqrt{ L' C' }$ \quad $\left[\si{1 \per \kilo \meter} \right]$ \\ 
 $\vartheta_{\ir nat} = \beta l $
 
 Wellenwiderstand für verlustlose Leitungen: $Z_W = \sqrt{\frac{\omega L'}{\omega C'}}$ \\ 
 
+Eine Leitung gilt als elektrisch kurz für $l \le 200 \si{\kilo \meter} $ (Freileitung) bzw. $l \le 100 \si{\kilo \meter} $ (Kabel) \\ 
+
 Längsimpedanz (elektrisch lang): $\vec Z_l = Z_w \j \sin ( \beta l)$ \\
+Längsimpedanz (elektrisch kurz): $\vec Z_l = \j \omega L' \cdot l$ \\
+Queradmittanz (elektrisch lang): $\frac{\vec Y_q}{2} = \frac{1}{Z_w} \j \tan \left( \frac{\beta l}{2} \right)$ \\
+Queradmittanz (elektrisch kurz): $\frac{\vec Y_q}{2} = \j \omega C' \cdot \frac{l}{2}$ \\
 
-Queradmittanz (elektrisch lang): $\frac{Y_q}{2} = \frac{1}{Z_w} \j \tan \left( \frac{\beta l}{2} \right)$
-
-natürliche Leistung: $P_{\ir nat} = \frac{U_n^2}{Z_w}$
 
 
-Zweitorgleichung: $\mat{ \vec U_1  \\ \vec I_1 } = \mat{ \cos(\beta l) & Z_w \j \sin ( \beta l) \\ \frac{1}{Z_w} \j \sin (\beta l) & \cos ( \beta l)} \mat{\vec U_2  \\ \vec I_2 }$
+
+\emphbox{
+Zweitorgleichung:
+$\mat{ \vec U_1  \\ \vec I_1 } = \mat{ \cos(\beta l) & Z_w \j \sin ( \beta l) \\ \frac{1}{Z_w} \j \sin (\beta l) & \cos ( \beta l)} \mat{\vec U_2  \\ \vec I_2 }$
+}
 } 
+
+\sectionbox{
+	\subsection{Eingangsimpedanz}
+	natürliche Leistung: $P_{\ir nat} = 3 \cdot \frac{U_1^2}{Z_W} = \frac{U_n^2}{Z_w}$ \\
+	gibt einen Anhaltswert für die Übertragungsfähigkeit einer Leitung im symmetrischen Drehstromsystem.\\
+
+	\subsubsection{Kurzschluss $\vec Z_2 = 0$}
+	$\vec Z_1 = Z_W \cdot \j \tan (\beta l)$ \\
+
+	\subsubsection{Leerlauf $\vec I_2 = 0$}
+	$\vec Z_1 = Z_W \cdot \frac{1}{\j \tan ( \beta l)}$ \\ 
+	$\vec U_1 = \cos (\beta l) \cdot \vec U_2$ \\
+
+	\subsubsection{Abschluss mit der Wellenimpedanz $\vec{Z_2} = Z_W$} 
+	Betrieb mit natürlicher Leistung:
+	\begin{itemize}
+		\item $\abs{\vec U_1} = \abs{\vec U_2}$
+		\item $\angle (U, I) = 0$
+		\item Phasendrehung von $U$ und $I$ um $\beta l$
+	\end{itemize}
+ }
+
+\sectionbox{
+\subsection{Blindleistungskompensation}
+\symbolbox{
+	\begin{tabular}{cc}
+	$k_q$ & Querkompensationsgrad \\
+	$k_l$ & Längskompensationsgrad \\
+	$C_w'$ & wirksamer Kapazitätsbelag \\
+	$L_w'$ & wirksamer Induktivitätsbelag
+	\end{tabular}
+}
+
+wirksamer Wellenwiderstand $Z_{W k} = \sqrt{\frac{L_w'}{C_w'}}  = \sqrt{\frac{L'}{C'}} \cdot \sqrt{\frac{1 - k_l}{1 - k_q}}	  $
+
+$\frac{P_{\ir nat k}}{P_{\ir nat}} = \sqrt{\frac{1-k_q}{1-k_l}} $
+
+$\beta_k = \omega \sqrt{L_w' \cdot C_w'} = \omega \sqrt{L' \cdot C'} \cdot \sqrt {(1-k_l)\cdot (1-k_q)}$
+
+}
 \sectionbox{
 \subsection{Querkompensation}
 
-\boxed{
-Q_2 = \frac{P_{\ir nat}}{\sin ( \beta l )} \left[ \sqrt{1 - \left( \frac{p_2}{P_{\ir nat}} \sin (\beta l) \right)^2} - \cos (\beta l) \right]}
-}
+wirksamer Kapazitätsbelag: $C_w' = C' \cdot (1-k_q) \Ra (1 - k_q) = \frac{C_w'}{C'}$ \\
 
+\emphbox{
+Kompensationsblindleistung am Leitungsende\\ 
+$Q_2 = \frac{P_{\ir nat}}{\sin ( \beta l )} \left[ \sqrt{1 - \left( \frac{P_2}{P_{\ir nat}} \sin (\beta l) \right)^2} - \cos (\beta l) \right]$
+} \\
+
+falls Leitung mit Kompensationsinduktivität $L_k$ abgeschlossen ist:
+
+$\vec I_2 = \vec I_k = \frac{\vec U_2}{\j \omega L_k}$
+
+Kompensationsreaktanz: $X_k = \omega L_k = \frac{Z_w \cdot \sin (\beta l)}{1 - \cos (\beta l)}$
+}
 \sectionbox{
 \subsection{Längskompensation}
-$\frac{P_{\ir natK}}{P_{\ir nat}} = \sqrt{\frac{1 - k_q}{1-k_l}} $
+
+wirksamer Induktivitätsbelag: $L_w' = L' (1 - k_l)$
+
+Längskompensationsgrad: $k_l = 1 - \frac{L_w'}{L'} = \frac{\omega L' \cdot l - (\omega L' \cdot l - \frac{1}{\omega C_k})}{\omega l' \cdot l}$ \\ 
 
 Faustregel für die optimale Anzahl der Kondensatorbatterien: \\
 $0 < k_l \le 0,5 \Ra n = 1 \Ra X_k = k_l \cdot 2 Z_w \sin (\beta \frac{l}{2})$ \\
@@ -263,6 +461,23 @@ Leistungswinkel der kompensierten Leitung: $\vartheta_k = \beta_k l$
 
 Grenzwinkel für Stabilität der Leitung: $\vartheta_{\ir Grenz} = 42^\circ$
 $\vartheta = (\vartheta_M)_{\ir grenz} - (\vartheta_M + \vartheta_T)$ mit Transformatorwinkel $\vartheta_T \approx 3,5^\circ$, $\vartheta_M \approx 5,5^\circ$
+}
+
+\sectionbox{
+	\subsection{Übertragungsfähigkeit von Freileitungen}
+
+	\tablebox{
+	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}cccccc@{}} \ctrule
+	$U_n$ & Leiter & $Z_W  $ & $P_{\ir nat}  $ & $S_{\ir th}$ \\ 
+	$[\si{\volt} ]$& & $[\si{\ohm}]$ & $[\si{\mega \watt}] $ & $[\si{\mega \volt \ampere}]$   \\ \cmrule 
+	$10 \si{\kilo \volt}$ & Al/St 50/8 & 330 & 0,3 & 3 \\
+	$30 \si{\kilo \volt}$ & Al/St 95/15 & 360 & 2,5 & 15  \\
+	$110 \si{\kilo \volt}$ & Al/St 240/40 & 365 & 33 & 123  \\
+	$380 \si{\kilo \volt}$ & Al/St $4 \cdot 240/40$ & 240 & 600 & 1700  \\
+	$380 \si{\kilo \volt}$ & Al/St $4 \cdot 550/70$ & 240 & 600 & 2633 \\
+	$735 \si{\kilo \volt}$ & Al/St $4 \cdot 680/85$ & 260 & 2080 & 5860  \\ \cbrule
+	\end{tabular*}
+	} 
 }
 \sectionbox{
 \subsection{Wanderwellen}
@@ -327,11 +542,13 @@ Bezogener Spannungsfall: $u_x = \frac{X_k S_{rT}}{U_{r1}^2}$
 \subsubsection{Bemessungsstrom}
 
 \begin{circuitikz}
-\draw
-(0,0) to[R, o-, l=$R_k$, i>^=$\vec I_1$](1.5,0) to[L, -o, l=$\j X_k$, i^>=$\vec I_2^\times$] (3,0) to[open, v^>=$\vec U_2^\times$] (3,-1)
-to[short, o-o] (0,-1)to[open, v^<=$\vec U_1$] (0,0)
- ;
+\draw(0,0) to[R, o-, l=$R_k$, i>^=$\vec{I_1}$](1.5,0) to[L, -o, l=$\j X_k$, i^>=$\vec I_2^\times$] (3,0) to[open, v^>=$\vec{U_2^\times}$] (3,-1)
+to[short, o-o] (0,-1)to[open, v^<=$\vec{U_1}$] (0,0);
 \end{circuitikz}
+
+$X_h \ra \infty$ \quad $R_{\ir Fe} \ra \infty$ \\
+
+$R_k = R_1 + R_2^\times$ \quad $X_k = X_{\sigma1} + X_{\sigma2}^\times$ \quad $\vec Z_k = R_k + \j X_k$
 }
 \sectionbox{
 \subsubsection{Übersetzung \textrm{ü}}
@@ -350,34 +567,47 @@ Bemessungsleistung: $S_{rT} = \sqrt{3} \cdot U_{rT} \cdot I_{rT}$
 
 Kurzschlussreaktanz: $X_k = \frac{u_k \cdot U_{rT}^2}{S_{rT}}$ 
 
-$X_{k(Y)} = \frac{X_{k(\Delta)}}{3}$
+$X_{k(Y)} = \frac{X_{k(\Delta)}}{3}$ \\
+
+Bezogene Kurzschlussspannung: $\vec u_k = u_R + \j u_x$ \\
+
+Typische Werte: \\ 
+	\tablebox{
+		\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}llll@{}} \ctrule
+			Anwendung & $S_r / MVA$ & $u_R / \%$ & $u_x / \%$ \\ \cmrule
+			Niederspannung & $0,25 \ldots 1,6$ & $1,8 \ldots 1,0$ & $5,8$ \\
+			Mittelspannung & $2,5 \ldots 25$ & $1,0 \ldots 0,5$ & $7 \ldots 8,5$ \\
+			Hochspannung $110 \si{\kilo \volt} $ & $16 \ldots 63$ & $0,7 \ldots 0,6$ & 12 \\
+			Hochspannung $220 \si{\kilo \volt} $ & $100 \ldots 400$ & $0,5 \ldots 0,3$ & $12 \ldots 14$ \\
+			Hochspannung $380 \si{\kilo \volt} $ & $630 \ldots 1500$ & $0,2$ & $13 \ldots 16$ \\
+			\cbrule
+		\end{tabular*}
+	}
 }
 \sectionbox{
-\subsection{Wicklungsverschaltung}
+	\subsection{Wicklungsverschaltung}
 
-\subsubsection{Sternschaltung}
-\begin{circuitikz} [scale=0.5]
- \draw
-(0,0) node[anchor=south] {U} to[L, v_>=$\vec U_{\ir U}$, o-] (0, -3) -- (1,-3) to[L, -o] (1,0) node[anchor=south] {V}
-(1,-3) -- (2, -3) to[L, -o] (2, 0)  node[anchor=south] {W}
-(3,0) to[short, -o] (3,0) node[anchor=south] {N};
-\draw[dashed] (2, -3) -- (3, -3) to[short] (3,-0.1) ;
- \end{circuitikz} \quad \quad
-\begin{circuitikz}
-\draw[->] (0.8, -1) -- (0, 0) node[anchor=west] {$\vec U_{\ir W}$};
-\draw[->](0.8, -1) -- (0, -2) node[anchor=west] {$\vec U_{\ir V}$};
-\draw[->] (0.8, -1) -- (1.8, -1) node[anchor=north] {$\vec U_{\ir U}$} ;
-\end{circuitikz}
+	\subsubsection{Sternschaltung}
+	\begin{circuitikz} [scale=0.5]
+		\draw(0,0) node[anchor=south] {U} to[L, v_>=$\vec U_{\ir U}$, o-] (0, -3) -- (1,-3) to[L, -o] (1,0) node[anchor=south] {V}
+		(1,-3) -- (2, -3) to[L, -o] (2, 0)  node[anchor=south] {W}
+		(3,0) to[short, -o] (3,0) node[anchor=south] {N};
+		\draw[dashed] (2, -3) -- (3, -3) to[short] (3,-0.1);
+	\end{circuitikz} \quad \quad
+	\begin{circuitikz}
+		\draw[->] (0.8, -1) -- (0, 0) node[anchor=west] {$\vec{U_{\ir{W}}}$};
+		\draw[->](0.8, -1) -- (0, -2) node[anchor=west] {$\vec{U_{\ir{V}}}$};
+		\draw[->] (0.8, -1) -- (1.8, -1) node[anchor=north] {$\vec{U_{\ir{U}}}$};
+	\end{circuitikz}
 
- \subsubsection{Dreieckschaltung}
-\begin{circuitikz}
-\draw
-(2,0.1) node[anchor=south] {U} (2,0) to[L, o-, v_>=$\vec U_{\ir UV}$] (2,-1.5) -- (2.2, -1.5) -- (2.4, -0.2) -- (2.6, -0.2)
-(2.6,0.1) node[anchor=south] {V} (2.6, 0) to[L, o-] (2.6, -1.5) -- (2.8, -1.5) -- (3, -0.2) -- (3.2, -0.2)
-(3.2,0.1) node[anchor=south] {W} (3.2, 0) to[L, o-] (3.2, -1.5) -- (3.2, -1.7) -- (1, -1.7) -- (1, -0.2) -- (2, -0.2);
-\end{circuitikz}
+	\subsubsection{Dreieckschaltung}
+	\begin{circuitikz}
+		\draw(2,0.1) node[anchor=south] {U} (2,0) to[L, o-, v_>=$\vec{U_{\ir{UV}}}$] (2,-1.5) -- (2.2, -1.5) -- (2.4, -0.2) -- (2.6, -0.2)
+		(2.6,0.1) node[anchor=south] {V} (2.6, 0) to[L, o-] (2.6, -1.5) -- (2.8, -1.5) -- (3, -0.2) -- (3.2, -0.2)
+		(3.2,0.1) node[anchor=south] {W} (3.2, 0) to[L, o-] (3.2, -1.5) -- (3.2, -1.7) -- (1, -1.7) -- (1, -0.2) -- (2, -0.2);
+	\end{circuitikz}
 
- \subsubsection{Zickzackschaltung}  
+	 \subsubsection{Zickzackschaltung}  
 
  }
 \end{multicols*}
