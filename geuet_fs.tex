@@ -6,7 +6,7 @@
 \begin{multicols*}{4}
 \fstitle{Grundlagen der \\ Energie- \\ übertragungstechnik}
 
- \ctikzset{bipoles/length=0.7cm}
+ \ctikzset{bipoles/length=0.6cm}
 \section{Rechnerische Behandlung des Drehstromsystems}
 
 \sectionbox{
@@ -76,6 +76,29 @@
  	\draw (0,0) -- (1,0) to[R, o-o, l^=$\vec{Z_{(0)}}$, i^>=$\vec{I_{(0)}}$ ] (4,0) to[open, v^>=$\vec{U_{(0)}}$, o-o] (4, -1.5) -- (1, -1.5) to[short, o-] (0,-1.5) to[short] (0,0);
  	\end{circuitikz}
 
+}
+
+\sectionbox{
+\subsection{Stern-Dreieck-Umwandlung}
+
+\begin{circuitikz}
+ \draw (1,0) to[L, l=$\vec Z_{31}$, o-o, i_>=$\vec I_{13}$] (0, -2) to[L, l=$\vec Z_{23}$, o-o, i_>=$\vec I_{32}$] (2, -2) to[L, l=$\vec Z_{12}$, o-o, i_>=$\vec I_{21}$] (1,0);
+ 
+\draw (4,0) to[L, l=$\vec Z_1$, i_>=$\vec I_1$, o-o] (4, -1) to[L, l=$\vec Z_3$, i^<=$\vec I_3$, o-o] (3, -2);
+\draw (4, -1) to[L, l=$\vec Z_2$, i^<=$\vec I_2$, o-o] (5, -2);  
+\end{circuitikz}
+
+$\vec Z_1 = \frac{\vec Z_{12} \vec Z_{31}}{\vec Z_{12} + \vec Z_{23} + \vec Z_{31}}$
+
+$\vec Z_2 = \frac{\vec Z_{12} \vec Z_{23}}{\vec Z_{12} + \vec Z_{23} + \vec Z_{31}}$
+
+$\vec Z_3 = \frac{\vec Z_{23} \vec Z_{31}}{\vec Z_{12} + \vec Z_{23} + \vec Z_{31}}$
+
+$\vec I_1 = \vec I_{12} - \vec I_{31}$
+
+$\vec I_2 = \vec I_{23} - \vec I_{12}$
+
+$\vec I_3 = \vec I_{31} - \vec I_{23}$
 }
  	\section{Freileitungen und Kabel}
 
@@ -610,5 +633,176 @@ Typische Werte: \\
 	 \subsubsection{Zickzackschaltung}  
 
  }
+
+ \section{Kurzschlussstromberechnung}
+
+ \symbolbox{
+ \begin{tabular}{cc}
+ $I_k''$ & Anfangskurzschlusswechselstrom \\
+ $I_k$ & Dauerkurzschlussstrom \\
+ $I_a = I_b$ & Ausschaltwechselstrom \\
+ $i_p$ & Stoßkurzschlussstrom
+  \end{tabular}
+ } 
+\sectionbox{	
+\subsection{Allgemeines}
+ Kurzschluss ist generatornah falls gilt: $I_k'' \ge 2 I_{rG}$ 
+
+\subsubsection{generatorfern}
+AC Anteil mit konst. Amplitude + auf Null abklingender aperiodischer DC Anteil 
+
+es gilt: $I_k'' = I_b = I_k$
+
+\subsubsection{generatornah}
+AC Anteil mit abklingender Amplitude + auf Null abklingender aperiodischer DC Anteil
+}
+\sectionbox{
+\subsection{Dreipoliger Kurzschluss}
+
+unvermaschtes Netz: $i_p = \kappa \sqrt 2 \cdot I_k''$
+
+vemaschtes Netz:
+$\kappa = 1,02 + 0.98 e^{- R/X}$
+
+\emphbox{$I_k'' = \frac{c \cdot \frac{U_{nN}}{\sqrt{3}}}{Z_k}$ }
+
+$i_p = 1,15 \cdot \kappa \sqrt 2 \cdot I_k''$
+
+\subsubsection{Symmetrischer Ausschaltwechselstrom}
+
+Geilanteil: $I_{dc} = \sqrt 2 I_k'' e^{- 2 \pi f t R/X}$
+
+Generatorfern: $I_b = I_k''$
+
+Generatornah: $I_b = \mu \cdot I_k''$ mit
+$\mu $ siehe S. 177
+}
+\sectionbox{
+\subsection{Ersatzschaltungen und Ersatzimpedanzen}
+
+\subsubsection{Synchrongenerator}
+$X_d'' = x_d'' \frac{U_{rG}^2}{S_{rG}}$
+
+\subsubsection{Netzeinspeisung}
+$Z_Q = \frac{c \cdot U_{nQ}}{\sqrt 3 \cdot I_{kQ}''}$
+
+$X_Q = \frac{Z_Q}{\sqrt{1 + (R_Q  / X_Q)^2} }$
+
+\subsubsection{Transformator}
+
+$Z_T = u_{kr} \cdot \frac{U_{rT}^2}{S_{rT}}$
+
+$R_T = u_{Rr} \cdot \frac{U_{rT}^2}{S_{rT}} = \frac{P_{krT}}{3 I_{rT}^2}$
+
+$X_T = \sqrt{Z_T^2 - R_T^2} $ \\
+}
+
+\sectionbox{
+\subsection{unsymmetrische Kurzschlüsse}
+
+\subsubsection{Zweipoliger Kurzschluss ohne Erdberührung}
+
+$I_{k2}'' = \frac{c \cdot U_n}{2 \abs{\vec Z_{(1)}}} = \frac{\sqrt{3}}{2} I_k''$
+
+$i_{p2} = \frac{\sqrt 3}{2} i_p = \kappa \cdot \sqrt 2 \cdot I_{k2}''$
+
+\subsubsection{Zweipoliger Kurzschluss mit Erdberührung}
+
+$I_{kE2E}'' = \frac{\sqrt 3 \cdot c \cdot U_n}{\abs{\vec Z_{(1)} + 2 \vec Z_{(0)}}}$
+
+$i_{p2E} = \kappa \cdot \sqrt 2 \cdot I_{kE2E}''$
+
+\subsubsection{Einpoliger Erdschluss}
+
+$I_{k1}'' = \frac{\sqrt 3 \cdot c \cdot U_n}{\abs{2 \vec Z_{(1)} + \vec Z_{(0)}}} $
+
+$i_{p1} = \kappa \cdot \sqrt 2 \cdot I_{k1}''$
+}
+\section{Synchrongenerator}
+
+\sectionbox{
+	\subsection{stationärerer Betrieb}
+
+	\symbolbox{
+		\begin{tabular}{cc}
+		$U$ & Klemmenspannung \\
+		$I$ & Strangstrom \\
+		$U_p$ & Polradspannung
+		\end{tabular}
+	} 
+
+	$\vec U = \vec U_p - (R + \j X_d) \cdot \vec I$
+
+	mit $X_d = \omega \cdot (L_h + L_\sigma)$ 
+
+	\begin{circuitikz}
+		\draw (0,0) to[L, l=$\j X_h$, -*] (1,0) to[L, l=$\j X_\sigma$] (2,0) to[R, l=$R$, -o, i_>=$\vec I_1$] (4,0) to[open, v>=$\vec U$, o-o] (4, -1) -- (1, -1) to[short, *-] (0, -1);
+		\draw (0,0) to[sV=$\vec U_p$] (0,-1);
+		\draw (1,0) to[open, v^>=$\vec E$] (1,-1);
+	\end{circuitikz}
+
+	bezogene synchrone Reaktanz $x_d = \frac{X_d \cdot I_{rG}}{U_{rG} / \sqrt 3} \approx 2,0$
+
+	synchrone Reaktanz: $X_d = \frac{x_d \cdot U_{rG}^2}{S_{rG}}$
+
+	$X_d \cdot I_w = U_p \sin \theta_M$
+	mit $\theta_M$ ist elektrischer Polradwinkel \\
+
+	abgegebene Wirkleistung: $P = 3 \cdot U \cdot I_w$
+
+	\textbf{übererregter Betrieb} $\abs{\vec{U_p} } > \abs{\vec{U} } $
+	Maschine gibt induktive Blindleistung ab (wirkt wie Kapazität)
+
+	$\vec I = I_w - \j I_b \Ra Q > 0$
+
+	\textbf{untererregter Betrieb} $\abs{\vec{U_p} } < \abs{\vec{U} } $
+	Maschine nimmt induktive Blindleistung auf (wirkt wie Induktivität)
+
+	$\vec I = I_w + \j I_b \Ra Q < 0$ 
+
+}
+\section{Sternpunktbehandlung}
+\sectionbox{
+\subsection{Allgemeines}
+\symbolbox{
+	\begin{tabular}{cc}
+	$U_{\ir LE(F)}$ & Spannung d. fehlerh. Außenleiter bei Erdberührung\\
+	$U_{\ir b (F)}$ & Außenleiterspannung wenn kein Fehler wäre \\
+	$I_{\ir CE}$ & kapazitiver Erdschlussstrom 
+	\end{tabular}
+} 
+
+Erdfehlerfaktor (Wirksamkeit der Sternpunkterdung):
+$\delta = \frac{U_{\ir LE (F)}}{U_{\ir b (F))}/ \sqrt 3}$ 
+
+Netz ist wirksam geerdet falls $\delta \le 1,4$
+
+Bei wirksamer Erdung hohe Erdkurzschlusströme aber geringe betriebsfrequente und transiente Überspannung
+}
+\sectionbox{
+\subsection{Netz mit isoliertem (freiem) Sternpunkt} 
+
+Bei einpoligem Erdschluss vergrößern sich die Beträge der Leiter-Erde Spnnungen der gesunden Leiter um $\sqrt 3$ $\Ra \delta = \sqrt 3$
+
+Fehlerstrom (bei Erdschluss in L1):\\
+ $\vec I_1 = \vec I_{\ir CE} = \j \sqrt 3 \cdot 1,1 \cdot U_{n} \omega C_{E}$
+}
+\sectionbox{
+ \subsection{Netz mit Erdschlusskompensation}
+
+ wirksamer Nullleitwert: $\vec Y_{(0)} = \frac{1}{\j 3 X_{\ir EL}} + \j \omega C_{\ir E}$
+
+Fehlerstrom: $\vec I_{E (F)} = 3 \cdot \vec I_{(0)} = 3 \cdot \frac{U_b}{\sqrt 3} \j \cdot (\omega C_E - \frac{1}{3 X_{EL}})$
+
+Strom durch die Erdlöschspule: $\vec I_{\ir Sp} = \frac{U_b / \sqrt 3}{\j X_{\ir EL}}$
+}
+
+\sectionbox{
+	\subsection{Netz mit niederohmiger Sternpunkterdung}
+
+	meist in Freileitungsnetzen mit $U_n \ge 220 \si{\kilo \volt} $ bzw. Kabelnetzen mit $U_n \ge 110 \si{\kilo \volt}$
+
+	Erdfehlerfaktor: $\delta = \abs{\vec a^2 + \frac{\vec Z_{(1)}  - \vec Z_{(0)}}{2 \vec Z_{(1)} + \vec Z_{(0)}}} $ 
+}
 \end{multicols*}
 \end{document}
