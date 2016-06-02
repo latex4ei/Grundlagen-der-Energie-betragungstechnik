@@ -12,6 +12,9 @@
 
 \begin{document}
 
+\IfFileExists{git.id}{\input{git.id}}{}
+\ifdefined\GitRevision\mydate{\GitNiceDate\ (git \GitRevision)}\fi
+
 \maketitle
 
 \ctikzset{bipoles/length=0.6cm}
