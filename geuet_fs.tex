@@ -1,51 +1,63 @@
+% Formelsammlung Grundlagen der Energieübertragungstechnik
+% based on template from www.latex4ei.de
 
-\documentclass[fs, footer]{latex4ei}
+% Dokumenteinstellungen
+% ======================================================================
+\documentclass[german]{latex4ei/latex4ei_sheet}
+
 \usepackage[european]{circuitikz}
 \usepackage{tikz}
-\begin{document}
-\begin{multicols*}{4}
-\fstitle{Grundlagen der \\ Energie- \\ übertragungstechnik}
 
- \ctikzset{bipoles/length=0.6cm}
+\title{Grundlagen der\\ Energie-\\übertragungstechnik}
+
+\begin{document}
+
+\IfFileExists{git.id}{\input{git.id}}{}
+\ifdefined\GitRevision\mydate{\GitNiceDate\ (git \GitRevision)}\fi
+
+\maketitle
+
+\ctikzset{bipoles/length=0.6cm}
 \section{Rechnerische Behandlung des Drehstromsystems}
 
-\sectionbox{
+\begin{sectionbox}
 	 \subsection{Spannung $u$}
-	
+
 	 Augenblickswert:
-	 $u(t) = \hat u \cos ( \omega t + \varphi_u) = U \sqrt 2 \cos (\omega t + \varphi_u)$ \\ 
+	 $u(t) = \hat u \cos ( \omega t + \varphi_u) = U \sqrt 2 \cos (\omega t + \varphi_u)$ \\
 
-	 Scheitelwert / Amplitude:  $\hat u$ \\ 
- 
+	 Scheitelwert / Amplitude:  $\hat u$ \\
+
 	 Effektivwert (allg.): $U_{\ir eff} = U = \sqrt{\frac{1}{T} \int \limits_{t_0}^{t_0 + T} u^2(\tau) \diff \tau}$ \\
-	 $\ra $ bei sinusförmigen Größen: $U = \frac{\hat u}{\sqrt 2}$ \\ 
+	 $\ra $ bei sinusförmigen Größen: $U = \frac{\hat u}{\sqrt 2}$ \\
 
-	 Phasenwinkel: $\varphi (t) = \omega t + \varphi_u$ mit $\omega = 2 \pi f = \frac{2 \pi}{T}$ \\ 
+	 Phasenwinkel: $\varphi (t) = \omega t + \varphi_u$ mit $\omega = 2 \pi f = \frac{2 \pi}{T}$ \\
 
-	 Nullphasenwinkel: $\varphi_u$ \\ 
-}
-\sectionbox{
+	 Nullphasenwinkel: $\varphi_u$ \\
+\end{sectionbox}
 
+\begin{sectionbox}
 	\subsection{Stromstärke $i$ }
 	 Augenblickswert:
-	 $i(t) = \hat{i} \cos ( \omega t + \varphi_i) = I \sqrt 2 \cos (\omega t + \varphi_i)$ \\ 
+	 $i(t) = \hat{i} \cos ( \omega t + \varphi_i) = I \sqrt 2 \cos (\omega t + \varphi_i)$ \\
 
-	 Scheitelwert / Amplitude:  $\hat i$ \\ 
- 
-	 Effektivwert (bei sinusförmigen Größen): $I = \frac{\hat i}{\sqrt 2}$ \\ 
+	 Scheitelwert / Amplitude:  $\hat i$ \\
 
-	 Phasenwinkel: $\varphi (t) = \omega t + \varphi_i$ mit $\omega = 2 \pi f = \frac{2 \pi}{T}$ \\ 
+	 Effektivwert (bei sinusförmigen Größen): $I = \frac{\hat i}{\sqrt 2}$ \\
 
-	 Nullphasenwinkel: $\varphi_i$ \\ 
+	 Phasenwinkel: $\varphi (t) = \omega t + \varphi_i$ mit $\omega = 2 \pi f = \frac{2 \pi}{T}$ \\
 
-	 \textbf{Phasenverschiebungswinkel:} \\ 
+	 Nullphasenwinkel: $\varphi_i$ \\
+
+	 \textbf{Phasenverschiebungswinkel:} \\
 	 $\varphi = \varphi_{ui} = \varphi_u - \varphi_i$ \\
-	 
+
 	  $0 < \varphi \le \pi$: Strom eilt der Spannung nach \\
 	 $-\pi \le \varphi < 0$: Strom eilt der Spannung vor
-}
-\sectionbox{
-	 \subsection{Symmetrische Komponenten} 
+\end{sectionbox}
+
+\begin{sectionbox}
+	 \subsection{Symmetrische Komponenten}
 
 	 zerlegen eines Dreileiter-Drehstromnetz in unabhängige Systeme (Mit-, Gegen- und Nullsystem) \\
 
@@ -75,17 +87,16 @@
  	\begin{circuitikz}[scale=0.8]
  	\draw (0,0) -- (1,0) to[R, o-o, l^=$\vec{Z_{(0)}}$, i^>=$\vec{I_{(0)}}$ ] (4,0) to[open, v^>=$\vec{U_{(0)}}$, o-o] (4, -1.5) -- (1, -1.5) to[short, o-] (0,-1.5) to[short] (0,0);
  	\end{circuitikz}
+\end{sectionbox}
 
-}
-
-\sectionbox{
+\begin{sectionbox}
 \subsection{Stern-Dreieck-Umwandlung}
 
 \begin{circuitikz}
  \draw (1,0) to[L, l=$\vec Z_{31}$, o-o, i_>=$\vec I_{13}$] (0, -2) to[L, l=$\vec Z_{23}$, o-o, i_>=$\vec I_{32}$] (2, -2) to[L, l=$\vec Z_{12}$, o-o, i_>=$\vec I_{21}$] (1,0);
- 
+
 \draw (4,0) to[L, l=$\vec Z_1$, i_>=$\vec I_1$, o-o] (4, -1) to[L, l=$\vec Z_3$, i^<=$\vec I_3$, o-o] (3, -2);
-\draw (4, -1) to[L, l=$\vec Z_2$, i^<=$\vec I_2$, o-o] (5, -2);  
+\draw (4, -1) to[L, l=$\vec Z_2$, i^<=$\vec I_2$, o-o] (5, -2);
 \end{circuitikz}
 
 $\vec Z_1 = \frac{\vec Z_{12} \vec Z_{31}}{\vec Z_{12} + \vec Z_{23} + \vec Z_{31}}$
@@ -99,64 +110,60 @@ $\vec I_1 = \vec I_{12} - \vec I_{31}$
 $\vec I_2 = \vec I_{23} - \vec I_{12}$
 
 $\vec I_3 = \vec I_{31} - \vec I_{23}$
-}
- 	\section{Freileitungen und Kabel}
+\end{sectionbox}
 
+\section{Freileitungen und Kabel}
 
-
+\begin{sectionbox}
 \subsection{Freileitungen}
-
-\sectionbox{
 \subsubsection{Durchhang der Freileitungsseile}
 
-\symbolbox{
+\begin{symbolbox}
 \begin{tabular}{cc}
  $f(x)$ & Durchhang an der Stelle $x$ \\
 $G'$ & Gewichtskraft des Leiterseils pro Längeneinheit \\
 $F_H$ & Horizontalzugkraft \\
 $h$ & mittlere Höhe der Leiterseile
 \end{tabular}
-}
-
+\end{symbolbox}
 
 Durchhang: $f(x) = f_{\ir max} - \frac{G'}{2 F_h} x^2)$ mit $f_max = \frac{G'}{8 F_H} a^2$
 
-
-mittlere Höhe: $h = h_{\ir Mast}  - 0,7 \cdot f_{\ir max}$ \\ 
+mittlere Höhe: $h = h_{\ir Mast}  - 0,7 \cdot f_{\ir max}$ \\
 
 Mindestabstand zum Erdboden (VDE 0210-1):
 
-
-\symbolbox{
+\begin{symbolbox}
 \begin{tabular}{cc}
 $D_{\ir el}$ & elektrischer Grundabstand
 \end{tabular}
-} \\ 
+\end{symbolbox}
 
-Mindestabstand: $h_{\ir min} = 5 \si{\meter} + D_{\ir el}$ \\ 
+Mindestabstand: $h_{\ir min} = 5 \si{\meter} + D_{\ir el}$ \\
 
 Material:
 
 z.B. Al/St 240/40:
 
 Querschnitt des Aluminiumleiters $240 \si{\milli \meter \squared}$, Querschnitt des Stahlleiters $40 \si{\milli \meter \squared} $
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsubsection{Bündelleiter}
 
-\symbolbox{
+\begin{symbolbox}
 	\begin{tabular}{cc}
 	$r_B$ & Ersatzradius \\
 	$n$ & Anzahl der Teilleiter \\
 	$r$ & Seilradius eines Teilleiters \\
 	$r_T$ & Teilkreisradius
 	\end{tabular}
-}
+\end{symbolbox}
 für einen Bündelleiter mit 4 Teilleitern: $r_T = \sqrt 2 \frac{a}{2}$
 
 Ersatzradius $r_b$: $r_n = \sqrt[n]{n \cdot r \cdot r^{n-1}_{T}} $
 
-\textbf{Abstand zwischen den Außenleitern} \\ 
+\textbf{Abstand zwischen den Außenleitern} \\
 Ersatzabstand $D_{\ir ers}$ für Einfachsysteme: $D = \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31}}$ \\ \\
 Ersatzabstand für Doppelsysteme mit $\gamma$-Verdrillung: \\
 $D =  \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31} \cdot \frac{D_{12'} \cdot D_{23'} \cdot D_{31'}}{D_{11'} \cdot D_{22'} \cdot D_{33'}}}$
@@ -164,26 +171,28 @@ $D =  \sqrt[3]{D_{12} \cdot D_{23} \cdot D_{31} \cdot \frac{D_{12'} \cdot D_{23'
 typische Angabe des Werte:
 
 $4 \cdot \frac{21,7}{400} \si{\milli \meter} \Ra a = 400 \si{\milli \meter}, r=\frac{21,7}{2} \si{\milli \meter} $
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsubsection{Widerstandsbelag}
 
 Durch Ladungsträgerbewegung bei Stromfluss wird Joule'sche Wärme frei.
 
-\symbolbox{
+\begin{symbolbox}
 	\begin{tabular}{cc}
 	$Q$ & Querschnitt \\
 	$\alpha$ & Temperaturkoeffizient \\
 	$\vartheta$ & Celsiustemperatur
 	\end{tabular}
-}
+\end{symbolbox}
 
 Widerstand pro Längeneinheit: $R_{20}' =  \frac{1}{\kappa_{20} Q}$ \\
-mit Temperaturabhängigkeit: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\ 
+mit Temperaturabhängigkeit: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\
 
 im Bündelleiter: $R_B = \frac{1}{n} \cdot R$ mit $R$ ist Widerstand des Teilleiters
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsubsection{Induktivitätsbelag}
 
 Induktivität einer Leiterschleife mit Hin- und Rückleiter:
@@ -198,11 +207,13 @@ Betriebsinduktivität:
 
 $L_b \cdot \vec I_1 = L_{00} \cdot \vec I_1 + M \cdot \vec I_2 + M \cdot \vec I_3 = (L_{00} - M) \cdot \vec I_1$ \\
 
-\emphbox{Betriebsinduktivitätsbelag: $L_b' = (2 \ln \frac{D_{\ir ers}}{r} + \frac 1 2 ) \cdot 10^{-4} \si{\henry \per \kilo \meter}$} \\
-für Bündelleiter: $L_b' = (2 \ln \frac{D_{\ir ers}}{r_B} + \frac{1}{2 n}) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ 
-}
+\begin{emphbox}
+  Betriebsinduktivitätsbelag: $L_b' = (2 \ln \frac{D_{\ir ers}}{r} + \frac 1 2 ) \cdot 10^{-4} \si{\henry \per \kilo \meter}$
+\end{emphbox}
+für Bündelleiter: $L_b' = (2 \ln \frac{D_{\ir ers}}{r_B} + \frac{1}{2 n}) \cdot 10^{-4} \si{\henry \per \kilo \meter}$
+\end{sectionbox}
 
-\sectionbox{
+\begin{sectionbox}
 	\subsubsection{Betriebsimpedanzen}
 
 	Einfachseil: $\vec Z_b' = \vec Z_{(1)}' = R' + \j \omega \frac{\mu_0}{2\pi} (\ln \frac{D}{r} + \frac{1}{4})$ \\
@@ -210,22 +221,19 @@ für Bündelleiter: $L_b' = (2 \ln \frac{D_{\ir ers}}{r_B} + \frac{1}{2 n}) \cdo
 	Bündelleiter: $\vec Z_b' = \vec Z_{(1)}' = \frac{R'}{n} + \j \omega \frac{\mu_0}{2\pi} (\ln \frac{D}{r_B} + \frac{1}{4n})$ \\
 
 	Typische Werte (Al/St 240/40) bei $50 \si{\hertz}$: \\
-	\tablebox{
-	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lll@{}} \ctrule
+	\begin{tablebox}{@{\extracolsep\fill}lll@{}}
 		$110 \si{\kilo \volt} $ & Einfachseil & $\vec Z_b' = (0,12 + \j 0,4) \si{\ohm \per \kilo \meter} $ \\
 		$220 \si{\kilo \volt} $ & 2er-Bündel & $\vec Z_b' = (0,06 + \j 0,3) \si{\ohm \per \kilo \meter} $ \\
 		$380 \si{\kilo \volt} $ & 4er-Bündel & $\vec Z_b' = (0,03 + \j 0,25) \si{\ohm \per \kilo \meter} $ \\
-		\cbrule
-	\end{tabular*}
-	}
+	\end{tablebox}
 
-} 
+\end{sectionbox}
 
-\sectionbox{
-	
+\begin{sectionbox}
+
 	\subsubsection{Nullimpedanz}
 
-	Erdstromtiefe: $\delta = \frac{1,85}{\sqrt{\mu_0 \cdot \frac{1}{\rho} \cdot \omega} }$ 
+	Erdstromtiefe: $\delta = \frac{1,85}{\sqrt{\mu_0 \cdot \frac{1}{\rho} \cdot \omega} }$
 
 	Nullimpedanz für Einfachseile:
 
@@ -234,56 +242,53 @@ für Bündelleiter: $L_b' = (2 \ln \frac{D_{\ir ers}}{r_B} + \frac{1}{2 n}) \cdo
 	Nullimpedanz für Bündelleiter:
 
 	$\vec Z_{(0)} = \frac{\vec U_{(0)}}{\vec I_{(0)}} = \frac{R'}{n} + 3 \omega \frac{\mu_0}{8}+ \j \omega \frac{\mu_0}{2\pi} (3 \ln \frac{\delta}{\sqrt[3]{r \cdot D^2}} + \frac{1}{4n})$
-} 
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsubsection{Kapazitätsbelag}
- $C_b ' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{r_B \sqrt{1 + \left( \frac{D_{\ir ers}}{2 h}\right)^2 } }\right)} $ \\ 
+ $C_b ' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{r_B \sqrt{1 + \left( \frac{D_{\ir ers}}{2 h}\right)^2 } }\right)} $ \\
 
+für $D \ll 2h$: $C_b' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{ r_B} \right) }$ \\
+\end{sectionbox}
 
-für $D \ll 2h$: $C_b' = \frac{2 \pi \epsilon_0}{\ln \left( \frac{D_{\ir ers}}{ r_B} \right) }$ \\ 
-
-}
-
-\sectionbox{
+\begin{sectionbox}
 	\subsubsection{Nullkapazität}
 
-	$C_{(0)}' = \frac{2\pi \epsilon_0}{3 \ln \frac{2h}{\sqrt[3]{rD^2}}}$ 
+	$C_{(0)}' = \frac{2\pi \epsilon_0}{3 \ln \frac{2h}{\sqrt[3]{rD^2}}}$
 
-} 
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsubsection{Ohmscher Querleitwert $G'$}
 Verluste durch Ableitströme über Isolatoren und durch Koronaverluste. \\
 
 spezifische Arbeitsverluste: $P_V' = 3 \cdot \left( \frac{U_n}{\sqrt{3}} \right)^2 \cdot G_b' = U_n^2 \cdot G_b'$ \\
 
 Betriebsableitbelag: $G_b' = \frac{P_V'}{U_n^2}$
+\end{sectionbox}
 
-}
-\sectionbox{
+\begin{sectionbox}
 \subsection{Kabel}
 
-
-Querschnitt: $Q = (r_a^2 - r_i^2) \pi$ \\ 
-
+Querschnitt: $Q = (r_a^2 - r_i^2) \pi$ \\
 
 Eindringtiefe: $\delta = \sqrt{\frac{2}{\omega \mu \kappa}}$
 
 \subsubsection{Widerstandsbelag $R'$}
 
 Widerstand pro Längeneinheit: $R_{20}' =  \frac{1}{\kappa_{20} Q}$ \\
-mit Temperaturabhängigkeit: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\ 
-
+mit Temperaturabhängigkeit: $R_{\vartheta}'= \frac{1}{K_{20} Q} \left[ 1+ \alpha ( \vartheta - 20 K) \right]$\\
 
 \subsubsection*{Stromverdrängung / Skineffekt}
-für dicke massive Leiter. Erhöhung des ohmschen Widerstandes des Leiters.  
-\symbolbox{
+für dicke massive Leiter. Erhöhung des ohmschen Widerstandes des Leiters.
+\begin{symbolbox}
 	\begin{tabular}{cc}
 	$y_s$ &  Skineffekt-Korrekturfaktor \\
 	$R_{~}$ & Wechselstromwiderstand \\
 	$R_{=}$ & Gleichstromwiderstand \\
 	$f$ & Frequenz
 	\end{tabular}
-} 
+\end{symbolbox}
 
 $\frac{R_{\approx}}{R_{=}} = 1 + y_s$
 
@@ -295,75 +300,73 @@ $x_s = \sqrt{\frac{2 \cdot \mu \cdot f \cdot k_s}{R_{=}'}} $ mit $k_s = \begin{c
 \subsubsection{Induktivitätsbelag $L'$}
 Betriebsinduktivitäsbelag: $L_b' = \frac{L_B}{l} = \left( 2 \ln \frac{D}{r}+ \frac{1}{2} \right) \cdot 10^{-4} \si{\henry \per \kilo \meter}$ \\
 
-Betriebsreaktanzbelag: $X_b ' = \omega	L_b ' $ \\ 
+Betriebsreaktanzbelag: $X_b ' = \omega	L_b ' $ \\
 
 Induktivitätsbelag eines Hohlleiters:
 
 $\omega L_{b_{\ir HL}}' = \omega L_{b}' \cdot ( 0,96 + 0,051 \frac{r_a - r_i}{r_a})$ für $0 < \frac{r_a - r_i}{r_a} < 0,6$
 \\
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsubsection{Kapazitätsbelag $C'$}
 
 Radialfeldkabel: \\
-$C_b' = \frac{2 \pi \epsilon}{\ln \left( \frac{R_a}{R_i} \right )}$ \\ 
+$C_b' = \frac{2 \pi \epsilon}{\ln \left( \frac{R_a}{R_i} \right )}$ \\
 $C_L' = 0$
 
 Gürtelkabel: \\
 $C_b' = \frac{2 \pi \epsilon_0 \epsilon_r}{\ln{\sqrt{\frac{3c^2 (R_a^2 - c^2)^3}{R_i^2 (R_a^6 - c^6)} } } }$
+\end{sectionbox}
 
-}
-\sectionbox{
+\begin{sectionbox}
 \subsubsection{Ohmscher Querleitwert}
 $G_b' = \tan \delta \cdot \omega C_b'$
-}
+\end{sectionbox}
 
-\sectionbox{
+\begin{sectionbox}
 \subsubsection{typische Werte}
 \;
-	\tablebox{
-	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lll@{}} \ctrule
+	\begin{tablebox}{@{\extracolsep\fill}lll@{}}
 		Symbol & Einheit & typische Werte \\ \cmrule
 		$R'$ & $[\si{\ohm \per \kilo \meter}]$ & $0,01 \ldots 0,05$  \\
 		$X' = \omega L_b'$ & $[\si{\ohm \per \kilo \meter}]$& $0,1 \ldots 0,2 $ \\
 		$Y_b' = \omega C_b'$&  $[\si{\micro \siemens \per \kilo \meter} ]$& $50 \ldots 100 $ \\
-		$Z_w $ & $[\si{\ohm} ]$ &$32 \ldots 63 $ \\ 
-		\cbrule
-	\end{tabular*}
-	}
-}
+		$Z_w $ & $[\si{\ohm} ]$ &$32 \ldots 63 $ \\
+	\end{tablebox}
+\end{sectionbox}
 
 \section{Leitung im stationären und nichtstationären Betrieb}
 
-\sectionbox{
+\begin{sectionbox}
 	\subsection{Vereinfachte Leitungsbetrachtung}
 
 	vernachlässigen von $G_b$ und $Y_b$
 
 	\begin{circuitikz}
 	 \draw(0,0) to[R, o-, i_>=$\vec{I}$,  l=$R' \cdot l$] (2,0) to[L, l=$\j \omega L_b' l$, i_>=$\vec I$] (4,0) to[open, v^>=$\vec U_2$, -o] (4, -1) -- (0,-1) to[open, o-o, v^<=$\vec U_1$] (0,0);
-	 \end{circuitikz} 
+	 \end{circuitikz}
 
 	 Längsspannungsfall: $\Delta U = R \cdot I_w + \omega L_b \cdot I_b$
 
 	 Querspannungsfall: $\delta U = \omega L_b \cdot I_w - R \cdot I_b$
-}
+\end{sectionbox}
 
-
-\sectionbox{
+\begin{sectionbox}
 	\subsection{Leitungsgleichung für einphasige Leitung}
 
 
 	$\frac{\partial^2 u}{\partial x^2} = L' \cdot C' \cdot \frac{\partial^2 u}{\partial t^2} + (R' \cdot C' + L' \cdot G') \cdot \frac{\partial u}{\partial t}+ R' \cdot G' \cdot u$
 
-	$\frac{\partial^2 i}{\partial x^2} = L' \cdot C' \cdot \frac{\partial^2 i}{\partial t^2} + (R' \cdot C' + L' \cdot G') \cdot \frac{\partial i}{\partial t}+ R' \cdot G' \cdot i$ \\ 
+	$\frac{\partial^2 i}{\partial x^2} = L' \cdot C' \cdot \frac{\partial^2 i}{\partial t^2} + (R' \cdot C' + L' \cdot G') \cdot \frac{\partial i}{\partial t}+ R' \cdot G' \cdot i$ \\
 
 	Übertragungsmaß:
 
-	$\vec \gamma = \alpha + \j \cdot \beta = \sqrt{(R'(\omega) + \j \omega L'(\omega)) \cdot (G'(\omega) + \j \omega C'(\omega))} $ 
-} 
-\sectionbox{
-\subsection{Leitungsgleichungen für Drehstromleitungen} 
+	$\vec \gamma = \alpha + \j \cdot \beta = \sqrt{(R'(\omega) + \j \omega L'(\omega)) \cdot (G'(\omega) + \j \omega C'(\omega))} $
+\end{sectionbox}
+
+\begin{sectionbox}
+\subsection{Leitungsgleichungen für Drehstromleitungen}
 
 Übertragungsmaß $\vec \gamma = \alpha + \j \beta = \sqrt{(R' + \j \omega L') \cdot (G' + \j \omega C')} $
 
@@ -381,37 +384,32 @@ $\vect{\vec U_1 \\ \vec I_1} = \mat{\cosh (\vec \gamma \cdot l) & \vec Z_w \cdot
 \draw (3,0) to[R, l=$\frac{\vec Y_q}{2}$] (3, -1.5);
 \end{circuitikz}
 
-
-Längsimpedanz $\vec Z_l = \vec Z_w \cdot \sinh(\vec \gamma \cdot l)$ 
+Längsimpedanz $\vec Z_l = \vec Z_w \cdot \sinh(\vec \gamma \cdot l)$
 
 Queradmittanz $\frac{\vec Y_q}{2} = \frac{1}{\vec Z_w} \cdot \tanh(\vec \gamma \cdot \frac{l}{2})$
+\end{sectionbox}
 
-
-}
-\sectionbox{
+\begin{sectionbox}
 \subsection{verlustlose Fernleitung}
-Phasenmaß: $\beta = \omega \sqrt{ L' C' }$ \quad $\left[\si{1 \per \kilo \meter} \right]$ \\ 
+Phasenmaß: $\beta = \omega \sqrt{ L' C' }$ \quad $\left[\si{1 \per \kilo \meter} \right]$ \\
 $\vartheta_{\ir nat} = \beta l $
 
-Wellenwiderstand für verlustlose Leitungen: $Z_W = \sqrt{\frac{\omega L'}{\omega C'}}$ \\ 
+Wellenwiderstand für verlustlose Leitungen: $Z_W = \sqrt{\frac{\omega L'}{\omega C'}}$ \\
 
-Eine Leitung gilt als elektrisch kurz für $l \le 200 \si{\kilo \meter} $ (Freileitung) bzw. $l \le 100 \si{\kilo \meter} $ (Kabel) \\ 
+Eine Leitung gilt als elektrisch kurz für $l \le 200 \si{\kilo \meter} $ (Freileitung) bzw. $l \le 100 \si{\kilo \meter} $ (Kabel) \\
 
 Längsimpedanz (elektrisch lang): $\vec Z_l = Z_w \j \sin ( \beta l)$ \\
 Längsimpedanz (elektrisch kurz): $\vec Z_l = \j \omega L' \cdot l$ \\
 Queradmittanz (elektrisch lang): $\frac{\vec Y_q}{2} = \frac{1}{Z_w} \j \tan \left( \frac{\beta l}{2} \right)$ \\
 Queradmittanz (elektrisch kurz): $\frac{\vec Y_q}{2} = \j \omega C' \cdot \frac{l}{2}$ \\
 
-
-
-
-\emphbox{
+\begin{emphbox}
 Zweitorgleichung:
 $\mat{ \vec U_1  \\ \vec I_1 } = \mat{ \cos(\beta l) & Z_w \j \sin ( \beta l) \\ \frac{1}{Z_w} \j \sin (\beta l) & \cos ( \beta l)} \mat{\vec U_2  \\ \vec I_2 }$
-}
-} 
+\end{emphbox}
+\end{sectionbox}
 
-\sectionbox{
+\begin{sectionbox}
 	\subsection{Eingangsimpedanz}
 	natürliche Leistung: $P_{\ir nat} = 3 \cdot \frac{U_1^2}{Z_W} = \frac{U_n^2}{Z_w}$ \\
 	gibt einen Anhaltswert für die Übertragungsfähigkeit einer Leitung im symmetrischen Drehstromsystem.\\
@@ -420,63 +418,64 @@ $\mat{ \vec U_1  \\ \vec I_1 } = \mat{ \cos(\beta l) & Z_w \j \sin ( \beta l) \\
 	$\vec Z_1 = Z_W \cdot \j \tan (\beta l)$ \\
 
 	\subsubsection{Leerlauf $\vec I_2 = 0$}
-	$\vec Z_1 = Z_W \cdot \frac{1}{\j \tan ( \beta l)}$ \\ 
+	$\vec Z_1 = Z_W \cdot \frac{1}{\j \tan ( \beta l)}$ \\
 	$\vec U_1 = \cos (\beta l) \cdot \vec U_2$ \\
 
-	\subsubsection{Abschluss mit der Wellenimpedanz $\vec{Z_2} = Z_W$} 
+	\subsubsection{Abschluss mit der Wellenimpedanz $\vec{Z_2} = Z_W$}
 	Betrieb mit natürlicher Leistung:
 	\begin{itemize}
 		\item $\abs{\vec U_1} = \abs{\vec U_2}$
 		\item $\angle (U, I) = 0$
 		\item Phasendrehung von $U$ und $I$ um $\beta l$
 	\end{itemize}
- }
+\end{sectionbox}
 
-\sectionbox{
+\begin{sectionbox}
 \subsection{Blindleistungskompensation}
-\symbolbox{
+\begin{symbolbox}
 	\begin{tabular}{cc}
 	$k_q$ & Querkompensationsgrad \\
 	$k_l$ & Längskompensationsgrad \\
 	$C_w'$ & wirksamer Kapazitätsbelag \\
 	$L_w'$ & wirksamer Induktivitätsbelag
 	\end{tabular}
-}
+\end{symbolbox}
 
 wirksamer Wellenwiderstand $Z_{W k} = \sqrt{\frac{L_w'}{C_w'}}  = \sqrt{\frac{L'}{C'}} \cdot \sqrt{\frac{1 - k_l}{1 - k_q}}	  $
 
 $\frac{P_{\ir nat k}}{P_{\ir nat}} = \sqrt{\frac{1-k_q}{1-k_l}} $
 
 $\beta_k = \omega \sqrt{L_w' \cdot C_w'} = \omega \sqrt{L' \cdot C'} \cdot \sqrt {(1-k_l)\cdot (1-k_q)}$
+\end{sectionbox}
 
-}
-\sectionbox{
+\begin{sectionbox}
 \subsection{Querkompensation}
 
 wirksamer Kapazitätsbelag: $C_w' = C' \cdot (1-k_q) \Ra (1 - k_q) = \frac{C_w'}{C'}$ \\
 
-\emphbox{
-Kompensationsblindleistung am Leitungsende\\ 
+\begin{emphbox}
+Kompensationsblindleistung am Leitungsende\\
 $Q_2 = \frac{P_{\ir nat}}{\sin ( \beta l )} \left[ \sqrt{1 - \left( \frac{P_2}{P_{\ir nat}} \sin (\beta l) \right)^2} - \cos (\beta l) \right]$
-} \\
+\end{emphbox}
 
 falls Leitung mit Kompensationsinduktivität $L_k$ abgeschlossen ist:
 
 $\vec I_2 = \vec I_k = \frac{\vec U_2}{\j \omega L_k}$
 
 Kompensationsreaktanz: $X_k = \omega L_k = \frac{Z_w \cdot \sin (\beta l)}{1 - \cos (\beta l)}$
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsection{Längskompensation}
 
 wirksamer Induktivitätsbelag: $L_w' = L' (1 - k_l)$
 
-Längskompensationsgrad: $k_l = 1 - \frac{L_w'}{L'} = \frac{\omega L' \cdot l - (\omega L' \cdot l - \frac{1}{\omega C_k})}{\omega l' \cdot l}$ \\ 
+Längskompensationsgrad: $k_l = 1 - \frac{L_w'}{L'} = \frac{\omega L' \cdot l - (\omega L' \cdot l - \frac{1}{\omega C_k})}{\omega l' \cdot l}$ \\
 
 Faustregel für die optimale Anzahl der Kondensatorbatterien: \\
 $0 < k_l \le 0,5 \Ra n = 1 \Ra X_k = k_l \cdot 2 Z_w \sin (\beta \frac{l}{2})$ \\
 $0,5 < k_l \le 0,67 \Ra n = 2 \Ra X_k = k_l \cdot \frac{3}{2} Z_w \sin (\beta \frac{l}{3})$ \\
-$0,67 < k_l \le 0,75 \Ra n = 3 \Ra X_k = k_l \cdot \frac{4}{3} Z_w \sin (\beta \frac{l}{4})$ \\ \\ 
+$0,67 < k_l \le 0,75 \Ra n = 3 \Ra X_k = k_l \cdot \frac{4}{3} Z_w \sin (\beta \frac{l}{4})$ \\ \\
 
 Komensationsblindleistung: $Q_K = 3 \cdot X_K \cdot I_K^2$
 
@@ -484,31 +483,30 @@ Leistungswinkel der kompensierten Leitung: $\vartheta_k = \beta_k l$
 
 Grenzwinkel für Stabilität der Leitung: $\vartheta_{\ir Grenz} = 42^\circ$
 $\vartheta = (\vartheta_M)_{\ir grenz} - (\vartheta_M + \vartheta_T)$ mit Transformatorwinkel $\vartheta_T \approx 3,5^\circ$, $\vartheta_M \approx 5,5^\circ$
-}
+\end{sectionbox}
 
-\sectionbox{
+\begin{sectionbox}
 	\subsection{Übertragungsfähigkeit von Freileitungen}
 
-	\tablebox{
-	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}cccccc@{}} \ctrule
-	$U_n$ & Leiter & $Z_W  $ & $P_{\ir nat}  $ & $S_{\ir th}$ \\ 
-	$[\si{\volt} ]$& & $[\si{\ohm}]$ & $[\si{\mega \watt}] $ & $[\si{\mega \volt \ampere}]$   \\ \cmrule 
+	\begin{tablebox}{@{\extracolsep\fill}cccccc@{}}
+	$U_n$ & Leiter & $Z_W  $ & $P_{\ir nat}  $ & $S_{\ir th}$ \\
+	$[\si{\volt} ]$& & $[\si{\ohm}]$ & $[\si{\mega \watt}] $ & $[\si{\mega \volt \ampere}]$   \\ \cmrule
 	$10 \si{\kilo \volt}$ & Al/St 50/8 & 330 & 0,3 & 3 \\
 	$30 \si{\kilo \volt}$ & Al/St 95/15 & 360 & 2,5 & 15  \\
 	$110 \si{\kilo \volt}$ & Al/St 240/40 & 365 & 33 & 123  \\
 	$380 \si{\kilo \volt}$ & Al/St $4 \cdot 240/40$ & 240 & 600 & 1700  \\
 	$380 \si{\kilo \volt}$ & Al/St $4 \cdot 550/70$ & 240 & 600 & 2633 \\
-	$735 \si{\kilo \volt}$ & Al/St $4 \cdot 680/85$ & 260 & 2080 & 5860  \\ \cbrule
-	\end{tabular*}
-	} 
-}
-\sectionbox{
+	$735 \si{\kilo \volt}$ & Al/St $4 \cdot 680/85$ & 260 & 2080 & 5860  \\
+	\end{tablebox}
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsection{Wanderwellen}
-}
+\end{sectionbox}
 
 \section{Transformatoren}
 
-\sectionbox{
+\begin{sectionbox}
 \subsection{Zweiwicklungstransformator}
 
  \ctikzset{bipoles/length=0.7cm}
@@ -532,36 +530,37 @@ $\vec U_2^\times \cdot \vec I_2^\times = \textrm{ü}  \vec U_2 \cdot \frac{\vec 
 Bemessungsstrom: $\vec I_r = \frac{S_{rT}}{\sqrt{3} U_{rT}}$
 
 Kupferverluste: $P_{\ir cu} = 3 U_{R_k} I_1 = 3 R_k J_1^2$
-}
+\end{sectionbox}
 
-\sectionbox{
+\begin{sectionbox}
 \subsubsection{Leerlauf}
 
 Leerlaufstrom: $\vec I_0 = \vec I_{\ir Fe} + \vec I_h$
 
-Hauptreaktanz: $X_h = \Im{\frac{\vec U_{r1}}{\vec I_h}}$ 
+Hauptreaktanz: $X_h = \Im{\frac{\vec U_{r1}}{\vec I_h}}$
 
 Eisenverluste (im Einphasentransformator): $R_{\ir Fe} = \frac{U_{r1}^2}{P_0} = \textrm{ü}^2 \cdot \frac{U^2_{r2}}{P_0}$
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsubsection{Kurzschluss}
 
 \begin{circuitikz}
 \draw
 (0,0) to[R, o-, i>^=$\vec I_1$, l=$R_k$] (1.5,0) to[L, l=$\j X_k$, i^>=$\vec I_2^\times$] (3,0) -- (3,-1) to[short, -o] (0, -1) to[open, v^<=$\vec U_1$] (0,0)
 ;
-\end{circuitikz} \\ 
+\end{circuitikz} \\
 
 Kurzsschlussimpedanz: \\
-$\vec Z_k = \frac{\vec U_k}{\vec I_{r1}} = (R_1 + R_2^\times) + \j (X_{\sigma1} + \X_{\sigma2}^\times) = R_k + \j X_k$ \\ \\ 
+$\vec Z_k = \frac{\vec U_k}{\vec I_{r1}} = (R_1 + R_2^\times) + \j (X_{\sigma1} + \X_{\sigma2}^\times) = R_k + \j X_k$ \\ \\
 
 relative Kurzschlussspannung: \\
-$u_k = \frac{U_k}{U_{r1}} = \frac{I_{r1} \cdot X_k}{U_{r1}} \cdot \left( \frac{U_{r1}}{U_{r1}} \right) = \frac{S_r \cdot X_k}{U_{r1}^2}$ 
-
+$u_k = \frac{U_k}{U_{r1}} = \frac{I_{r1} \cdot X_k}{U_{r1}} \cdot \left( \frac{U_{r1}}{U_{r1}} \right) = \frac{S_r \cdot X_k}{U_{r1}^2}$
 
 Bezogener Spannungsfall: $u_x = \frac{X_k S_{rT}}{U_{r1}^2}$
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsubsection{Bemessungsstrom}
 
 \begin{circuitikz}
@@ -572,42 +571,41 @@ to[short, o-o] (0,-1)to[open, v^<=$\vec{U_1}$] (0,0);
 $X_h \ra \infty$ \quad $R_{\ir Fe} \ra \infty$ \\
 
 $R_k = R_1 + R_2^\times$ \quad $X_k = X_{\sigma1} + X_{\sigma2}^\times$ \quad $\vec Z_k = R_k + \j X_k$
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsubsection{Übersetzung \textrm{ü}}
 
 Übersetzung: $\textrm{ü} = \frac{w_1}{w_2}$ mit $w_1 :=$ Primärwicklung, $w_2 :=$ Sekundärwicklung \\
 
 Leerlaufübersetzung $\textrm{ü}_0 = \frac{\vec U_1}{\vec U_2} \approx \frac{w_1}{w_2}$
+\end{sectionbox}
 
-}
-\sectionbox{
+\begin{sectionbox}
 \subsection{Drehstromtransformator}
 
 Kurzschlussspannung: $u_k = \frac{U_{kT}}{U_{rT}} = \frac{\frac{U_{kT}}{\sqrt 3}}{\frac{U_{rT}}{\sqrt 3}} = \frac{X_k \cdot I_{rT}}{\frac{U_{rT}}{\sqrt 3}}$
 
 Bemessungsleistung: $S_{rT} = \sqrt{3} \cdot U_{rT} \cdot I_{rT}$
 
-Kurzschlussreaktanz: $X_k = \frac{u_k \cdot U_{rT}^2}{S_{rT}}$ 
+Kurzschlussreaktanz: $X_k = \frac{u_k \cdot U_{rT}^2}{S_{rT}}$
 
 $X_{k(Y)} = \frac{X_{k(\Delta)}}{3}$ \\
 
 Bezogene Kurzschlussspannung: $\vec u_k = u_R + \j u_x$ \\
 
-Typische Werte: \\ 
-	\tablebox{
-		\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}llll@{}} \ctrule
+Typische Werte: \\
+		\begin{tablebox}{@{\extracolsep\fill}llll@{}}
 			Anwendung & $S_r / MVA$ & $u_R / \%$ & $u_x / \%$ \\ \cmrule
 			Niederspannung & $0,25 \ldots 1,6$ & $1,8 \ldots 1,0$ & $5,8$ \\
 			Mittelspannung & $2,5 \ldots 25$ & $1,0 \ldots 0,5$ & $7 \ldots 8,5$ \\
 			Hochspannung $110 \si{\kilo \volt} $ & $16 \ldots 63$ & $0,7 \ldots 0,6$ & 12 \\
 			Hochspannung $220 \si{\kilo \volt} $ & $100 \ldots 400$ & $0,5 \ldots 0,3$ & $12 \ldots 14$ \\
 			Hochspannung $380 \si{\kilo \volt} $ & $630 \ldots 1500$ & $0,2$ & $13 \ldots 16$ \\
-			\cbrule
-		\end{tabular*}
-	}
-}
-\sectionbox{
+		\end{tablebox}
+\end{sectionbox}
+
+\begin{sectionbox}
 	\subsection{Wicklungsverschaltung}
 
 	\subsubsection{Sternschaltung}
@@ -630,33 +628,34 @@ Typische Werte: \\
 		(3.2,0.1) node[anchor=south] {W} (3.2, 0) to[L, o-] (3.2, -1.5) -- (3.2, -1.7) -- (1, -1.7) -- (1, -0.2) -- (2, -0.2);
 	\end{circuitikz}
 
-	 \subsubsection{Zickzackschaltung}  
+	 \subsubsection{Zickzackschaltung}
+\end{sectionbox}
 
- }
+\section{Kurzschlussstromberechnung}
 
- \section{Kurzschlussstromberechnung}
+\begin{symbolbox}
+\begin{tabular}{cc}
+$I_k''$ & Anfangskurzschlusswechselstrom \\
+$I_k$ & Dauerkurzschlussstrom \\
+$I_a = I_b$ & Ausschaltwechselstrom \\
+$i_p$ & Stoßkurzschlussstrom
+\end{tabular}
+\end{symbolbox}
 
- \symbolbox{
- \begin{tabular}{cc}
- $I_k''$ & Anfangskurzschlusswechselstrom \\
- $I_k$ & Dauerkurzschlussstrom \\
- $I_a = I_b$ & Ausschaltwechselstrom \\
- $i_p$ & Stoßkurzschlussstrom
-  \end{tabular}
- } 
-\sectionbox{	
+\begin{sectionbox}
 \subsection{Allgemeines}
- Kurzschluss ist generatornah falls gilt: $I_k'' \ge 2 I_{rG}$ 
+ Kurzschluss ist generatornah falls gilt: $I_k'' \ge 2 I_{rG}$
 
 \subsubsection{generatorfern}
-AC Anteil mit konst. Amplitude + auf Null abklingender aperiodischer DC Anteil 
+AC Anteil mit konst. Amplitude + auf Null abklingender aperiodischer DC Anteil
 
 es gilt: $I_k'' = I_b = I_k$
 
 \subsubsection{generatornah}
 AC Anteil mit abklingender Amplitude + auf Null abklingender aperiodischer DC Anteil
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsection{Dreipoliger Kurzschluss}
 
 unvermaschtes Netz: $i_p = \kappa \sqrt 2 \cdot I_k''$
@@ -664,7 +663,9 @@ unvermaschtes Netz: $i_p = \kappa \sqrt 2 \cdot I_k''$
 vemaschtes Netz:
 $\kappa = 1,02 + 0.98 e^{-3 \cdot  R/X}$
 
-\emphbox{$I_k'' = \frac{c \cdot \frac{U_{nN}}{\sqrt{3}}}{Z_k}$ }
+\begin{emphbox}
+  $I_k'' = \frac{c \cdot \frac{U_{nN}}{\sqrt{3}}}{Z_k}$
+\end{emphbox}
 
 $i_p = 1,15 \cdot \kappa \sqrt 2 \cdot I_k''$
 
@@ -676,8 +677,9 @@ Generatorfern: $I_b = I_k''$
 
 Generatornah: $I_b = \mu \cdot I_k''$ mit
 $\mu $ siehe S. 177
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
 \subsection{Ersatzschaltungen und Ersatzimpedanzen}
 
 \subsubsection{Synchrongenerator}
@@ -695,9 +697,9 @@ $Z_T = u_{kr} \cdot \frac{U_{rT}^2}{S_{rT}}$
 $R_T = u_{Rr} \cdot \frac{U_{rT}^2}{S_{rT}} = \frac{P_{krT}}{3 I_{rT}^2}$
 
 $X_T = \sqrt{Z_T^2 - R_T^2} $ \\
-}
+\end{sectionbox}
 
-\sectionbox{
+\begin{sectionbox}
 \subsection{unsymmetrische Kurzschlüsse}
 
 \subsubsection{Zweipoliger Kurzschluss ohne Erdberührung}
@@ -717,23 +719,24 @@ $i_{p2E} = \kappa \cdot \sqrt 2 \cdot I_{kE2E}''$
 $I_{k1}'' = \frac{\sqrt 3 \cdot c \cdot U_n}{\abs{2 \vec Z_{(1)} + \vec Z_{(0)}}} $
 
 $i_{p1} = \kappa \cdot \sqrt 2 \cdot I_{k1}''$
-}
+\end{sectionbox}
+
 \section{Synchrongenerator}
 
-\sectionbox{
+\begin{sectionbox}
 	\subsection{stationärerer Betrieb}
 
-	\symbolbox{
+	\begin{symbolbox}
 		\begin{tabular}{cc}
 		$U$ & Klemmenspannung \\
 		$I$ & Strangstrom \\
 		$U_p$ & Polradspannung
 		\end{tabular}
-	} 
+	\end{symbolbox}
 
 	$\vec U = \vec U_p - (R + \j X_d) \cdot \vec I$
 
-	mit $X_d = \omega \cdot (L_h + L_\sigma)$ 
+	mit $X_d = \omega \cdot (L_h + L_\sigma)$
 
 	\begin{circuitikz}
 		\draw (0,0) to[L, l=$\j X_h$, -*] (1,0) to[L, l=$\j X_\sigma$] (2,0) to[R, l=$R$, -o, i_>=$\vec I_1$] (4,0) to[open, v>=$\vec U$, o-o] (4, -1) -- (1, -1) to[short, *-] (0, -1);
@@ -758,36 +761,38 @@ $i_{p1} = \kappa \cdot \sqrt 2 \cdot I_{k1}''$
 	\textbf{untererregter Betrieb} $\abs{\vec{U_p} } < \abs{\vec{U} } $
 	Maschine nimmt induktive Blindleistung auf (wirkt wie Induktivität)
 
-	$\vec I = I_w + \j I_b \Ra Q < 0$ 
+	$\vec I = I_w + \j I_b \Ra Q < 0$
+\end{sectionbox}
 
-}
 \section{Sternpunktbehandlung}
-\sectionbox{
+\begin{sectionbox}
 \subsection{Allgemeines}
-\symbolbox{
+\begin{symbolbox}
 	\begin{tabular}{cc}
 	$U_{\ir LE(F)}$ & Spannung d. fehlerh. Außenleiter bei Erdberührung\\
 	$U_{\ir b (F)}$ & Außenleiterspannung wenn kein Fehler wäre \\
-	$I_{\ir CE}$ & kapazitiver Erdschlussstrom 
+	$I_{\ir CE}$ & kapazitiver Erdschlussstrom
 	\end{tabular}
-} 
+\end{symbolbox}
 
 Erdfehlerfaktor (Wirksamkeit der Sternpunkterdung):
-$\delta = \frac{U_{\ir LE (F)}}{U_{\ir b (F))}/ \sqrt 3}$ 
+$\delta = \frac{U_{\ir LE (F)}}{U_{\ir b (F))}/ \sqrt 3}$
 
 Netz ist wirksam geerdet falls $\delta \le 1,4$
 
 Bei wirksamer Erdung hohe Erdkurzschlusströme aber geringe betriebsfrequente und transiente Überspannung
-}
-\sectionbox{
-\subsection{Netz mit isoliertem (freiem) Sternpunkt} 
+\end{sectionbox}
+
+\begin{sectionbox}
+\subsection{Netz mit isoliertem (freiem) Sternpunkt}
 
 Bei einpoligem Erdschluss vergrößern sich die Beträge der Leiter-Erde Spnnungen der gesunden Leiter um $\sqrt 3$ $\Ra \delta = \sqrt 3$
 
 Fehlerstrom (bei Erdschluss in L1):\\
  $\vec I_1 = \vec I_{\ir CE} = \j \sqrt 3 \cdot 1,1 \cdot U_{n} \omega C_{E}$
-}
-\sectionbox{
+\end{sectionbox}
+
+\begin{sectionbox}
  \subsection{Netz mit Erdschlusskompensation}
 
  wirksamer Nullleitwert: $\vec Y_{(0)} = \frac{1}{\j 3 X_{\ir EL}} + \j \omega C_{\ir E}$
@@ -795,14 +800,14 @@ Fehlerstrom (bei Erdschluss in L1):\\
 Fehlerstrom: $\vec I_{E (F)} = 3 \cdot \vec I_{(0)} = 3 \cdot \frac{U_b}{\sqrt 3} \j \cdot (\omega C_E - \frac{1}{3 X_{EL}})$
 
 Strom durch die Erdlöschspule: $\vec I_{\ir Sp} = \frac{U_b / \sqrt 3}{\j X_{\ir EL}}$
-}
+\end{sectionbox}
 
-\sectionbox{
+\begin{sectionbox}
 	\subsection{Netz mit niederohmiger Sternpunkterdung}
 
 	meist in Freileitungsnetzen mit $U_n \ge 220 \si{\kilo \volt} $ bzw. Kabelnetzen mit $U_n \ge 110 \si{\kilo \volt}$
 
-	Erdfehlerfaktor: $\delta = \abs{\vec a^2 + \frac{\vec Z_{(1)}  - \vec Z_{(0)}}{2 \vec Z_{(1)} + \vec Z_{(0)}}} $ 
-}
-\end{multicols*}
+	Erdfehlerfaktor: $\delta = \abs{\vec a^2 + \frac{\vec Z_{(1)}  - \vec Z_{(0)}}{2 \vec Z_{(1)} + \vec Z_{(0)}}} $
+\end{sectionbox}
+
 \end{document}
